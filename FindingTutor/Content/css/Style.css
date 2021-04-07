@@ -1,0 +1,29 @@
+﻿.background-body{
+    background-image:url('../Image/background.jpg');
+    background-size: 100% auto;
+    background-attachment:fixed;
+}
+.intro-home {
+    background-color: #000000;
+}
+.intro-home h1{
+    color: #000000;
+    padding-bottom:50px;
+}
+.introl-home p{
+    color:#757272;
+}
+div.intro-home{
+    opacity:0.9;
+}
+.Maxim {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-size:50px;
+    color:#037261;
+}
+.box-200h{
+    height:200px;
+    min-height:200px;
+    max-height:200px;
+}
