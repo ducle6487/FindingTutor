@@ -1,0 +1,115 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/AuthenticateStyle.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="~/Content/LoaderStyle.css" />
+</head>
+
+<body onload="myFunction()" style="margin:0;">
+    <div id="loader"></div>
+    <h3 id="load" style="color: cadetblue;margin-top:150px">Đang tải...</h3>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        @if (ViewBag.Danger != null)
+        {
+            <div class="alert">
+                <span class="closebtn">&times;</span>
+                <strong>Danger!</strong> @ViewBag.Danger.ToString()
+            </div>
+        }
+
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert success">
+                <span class="closebtn">&times;</span>
+                <strong>Success!</strong> @ViewBag.Success.ToString()
+            </div>
+        }
+
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                @using (@Html.BeginForm("Register", "Authenticate"))
+                {
+                    <h1>Tạo tài khoản</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>hoặc sử dụng email của bạn để đăng ký</span>
+                    <input name="name" type="text" placeholder="Name" required />
+                    <input name="phone" type="tel" placeholder="Phone" pattern="[0][3|5|7|8|9][0-9]{8}" title="Số điện thoại không hợp lệ" required />
+                    <input name="email" type="email" placeholder="Email" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="ví dụ: abc@gmail.com" required />
+                    <input name="password" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
+
+                    @*<button>Sign Up</button>
+                        <a class="aTag" href="#">Sign Up</a>*@
+                    <input type="submit" class="aTag" value="Đăng ký" />
+                }
+            </div>
+            <div class="form-container sign-in-container">
+                @using (@Html.BeginForm("Login", "Authenticate"))
+                {
+                    <h1>Đăng nhập</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>hoặc sử dụng tài khoản của bạn</span>
+                    <input name="email" type="email" placeholder="Email" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="ví dụ: abc@gmail.com" required />
+                    <input name="password" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
+                    <a href="#">Quên mật khẩu?</a>
+                    @*<button>Sign In</button>*@
+                    <input type="submit" class="aTag" value="Đăng nhập" />
+                }
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Chào mừng trở lại!</h1>
+                        <p>Để giữ kết nối với chúng tôi, vui lòng đăng nhập bằng thông tin cá nhân của bạn</p>
+                        <button class="ghost" id="signIn">Đăng nhập</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Chào bạn!</h1>
+                        <p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
+                        <button class="ghost" id="signUp">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function () { div.style.display = "none"; }, 600);
+        }
+    }
+</script>
+<script src="~/Scripts/Loader.js"></script>
