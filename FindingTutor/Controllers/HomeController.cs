@@ -16,7 +16,7 @@ namespace FindingTutor.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            string s;
             return View();
         }
 
