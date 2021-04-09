@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using FindingTutor.Models;
+using System;
 using System.Web.Mvc;
-using FindingTutor.Models;
 
 namespace FindingTutor.Controllers
 {

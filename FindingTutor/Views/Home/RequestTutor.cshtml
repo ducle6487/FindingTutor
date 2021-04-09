@@ -1,0 +1,198 @@
+﻿@using FindingTutor.Models
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="~/Content/CustomStyle.css" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            width: 50%;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+</head>
+
+<body style="margin: 0px">
+
+    @using (@Html.BeginForm("RegisterSubmit", "Home", FormMethod.Post))
+    {
+        <div class="img">
+            <img style="width: 100%; margin: 0px" src="~/Content/image/tempsnip.png" />
+            <br />
+            <br />
+            <br />
+        </div>
+        <div align="center">
+            <div style="width: 40%;" align="left">
+
+                <h3>Bạn muốn học gì?</h3><br />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Khóa học</label>
+                    </div>
+                    <select class="custom-select" required="required" name="khoahoc" id="inputGroupSelect01">
+                        <option value="">Hãy chọn...</option>
+
+                        @foreach (CourseModel item in ViewBag.ListAllCourse)
+                        {
+                            if (ViewBag.khoahoc == item.IdCourse)
+                            {
+
+                                <option selected value="@item.IdCourse">@item.NameSubject-@item.NameGrade</option>
+                            }
+                            else
+                            {
+                                <option value="@item.IdCourse">@item.NameSubject-@item.NameGrade</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <br />
+                <h3>Bạn sẽ học bao lâu?</h3>
+                <br />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Lộ trình</label>
+                    </div>
+                    <select class="custom-select" required="required" name="lotrinh" id="inputGroupSelect03">
+                        <option value="">Choose...</option>
+                        @if (ViewBag.lotrinh == "1")
+                        {
+
+                            <option selected value="1">1 Lần</option>
+                        }
+                        else
+                        {
+                            <option value="1">1 Lần</option>
+                        }
+                    </select>
+                </div>
+                <br />
+                <h3>Mô tả những gì bạn đang tìm kiếm.</h3>
+                <br />
+                <div class="input-group mb-3">
+                    <textarea id="message" minlength="50" required name="message" placeholder="
+Hãy cho các gia sư tiềm năng biết cách họ có thể giúp đỡ, bạn muốn học gì, bạn gặp khó khăn gì và bạn muốn nhận được gì từ học phí.
+
+Đảm bảo rằng bạn không bao gồm bất kỳ thông tin cá nhân nào, chẳng hạn như số điện thoại ở giai đoạn này !
+
+Phải có ít nhất 50 ký tự.
+                              " rows="10" wrap="soft" class="form-control">@ViewBag.message</textarea>
+                </div>
+                <br />
+            </div>
+        </div>
+        if (@ViewBag.Danger != null)
+        {
+            <div align="center">
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Danger!</strong> @ViewBag.Danger
+                </div>
+            </div>
+        }
+        <div align="center" style="background-color: aliceblue; border-top-width: 1px; border-top: darkgrey">
+
+            <div style="width: 30%">
+                <button id="registing" style="float: right" type="button" onclick="hideRegister()" class="btn btn-default">Already have an account? Log in</button>
+                <button id="loging in" style="float: right" type="button" onclick="hideLogin()" hidden="true" class="btn btn-default">Don't have an account? Sign up</button>
+            </div>
+        </div>
+
+        <div id="formregister" align="center" style="background-color: aliceblue; border-top-width: 1px; border-top: darkgrey">
+            <div style="width: 20%" align="center">
+                <br />
+                <br /><br />
+                <input id="name" class="form-control" name="name1" type="text" placeholder="Name" required />
+                <br />
+                <input id="phone" class="form-control" name="phone1" type="tel" placeholder="Phone" pattern="[0][3|5|7|8|9][0-9]{8}" title="Số điện thoại không hợp lệ" required />
+                <br />
+                <input id="email" class="form-control" name="email1" type="email" placeholder="Email" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="ví dụ: abc@gmail.com" required />
+                <br />
+                <input id="password" class="form-control" name="password1" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
+                <br />
+                <input type="submit" class="btn btn-danger" formaction="@Url.Action("RegisterSubmit", "Home")" value="Submit Request" />
+            </div>
+        </div>
+
+        <div id="formlogin" align="center" hidden="true" style="background-color: aliceblue; border-top-width: 1px; border-top: darkgrey">
+            <div style="width: 20%" align="center">
+                <br />
+                <br /><br />
+                <input id="email1" value="sadasd@ds.ssd" class="form-control" name="email2" type="email" placeholder="Email" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="ví dụ: abc@gmail.com" required />
+                <br />
+                <input id="password1" value="sssssadasd" class="form-control" name="password2" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
+                <br />
+                <input type="submit" class="btn btn-danger" formaction="@Url.Action("LoginSubmit", "Home")" value="Submit Request" />
+            </div>
+        </div>
+    }
+    <div style="height: 300px; background-color: aliceblue"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+        function hideLogin() {
+            document.getElementById('formlogin').hidden = true;
+            document.getElementById('formregister').hidden = false;
+            document.getElementById('registing').hidden = false;
+            document.getElementById('loging in').hidden = true;
+
+            document.getElementById('name').value = "";
+            document.getElementById('phone').value = "";
+            document.getElementById('email').value = "";
+            document.getElementById('password').value = "";
+
+            document.getElementById('email1').value = "duc@gmsdail.com";
+            document.getElementById('password1').value = "jahdkas";
+
+        }
+
+        function hideRegister() {
+            document.getElementById('formlogin').hidden = false;
+            document.getElementById('formregister').hidden = true;
+            document.getElementById('registing').hidden = true;
+            document.getElementById('loging in').hidden = false;
+
+            document.getElementById('name').value = ".";
+            document.getElementById('phone').value = "0397067907";
+            document.getElementById('email').value = "duc@gmaisdal.com";
+            document.getElementById('password').value = "asdnasjkd";
+
+            document.getElementById('email1').value = "";
+            document.getElementById('password1').value = "";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
