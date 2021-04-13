@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FindingTutor" Class="TutorFindingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=FindingTutor;Persist Security Info=True;User ID=user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FindingTutorConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=HDTLOVEYOU\SQLEXPRESS05;Initial Catalog=FindingTutor;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FindingTutorConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Courses" Member="Courses">
     <Type Name="Course">
       <Column Name="IdCourse" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

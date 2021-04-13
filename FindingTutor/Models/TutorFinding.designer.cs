@@ -60,7 +60,7 @@ namespace FindingTutor.Models
     #endregion
 		
 		public TutorFindingDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FindingTutorConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FindingTutorConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
