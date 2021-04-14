@@ -22,9 +22,16 @@ namespace FindingTutor.Controllers
             s.Name = String.Format("{0}", Request.Form["name"]);
             s.Phone = String.Format("{0}", Request.Form["phone"]);
 
+            string valueSelect = String.Format("{0}", Request.Form["type"].ToString());
+            bool r=false;
+            if (valueSelect == "teacher")
+            {
+                r = true;
+            }
+
             if (accUtils.UnexistEmail(s.Email))
             {
-                if (accUtils.CreateAccount(s))
+                if (accUtils.CreateAccount(s,r))
                 {
                     ViewBag.Success = "Đăng ký thành công.";
                 }
@@ -48,11 +55,21 @@ namespace FindingTutor.Controllers
             string password = String.Format("{0}", Request.Form["password"]);
             if (accUtils.checkStudentLogin(email, password) == null)
             {
-                ViewBag.Danger = "Đăng nhập thất bại, thử lại.";
+                if(accUtils.checkTeacherLogin(email, password) == null)
+                {
+                    
+                    ViewBag.Danger = "Đăng nhập thất bại, thử lại.";
+                }
+                else
+                {
+                    Session["Teacher"] = accUtils.checkTeacherLogin(email, password);
+                    ViewBag.Success = "Đăng nhập thành công t";
+                }
             }
             else
             {
-                ViewBag.Success = "Đăng nhập thành công";
+                Session["Student"] = accUtils.checkStudentLogin(email, password);
+                ViewBag.Success = "Đăng nhập thành công s";
             }
 
             return View("UserLogin");

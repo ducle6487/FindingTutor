@@ -51,9 +51,44 @@ namespace FindingTutor.Models
                 s.IdStudent = Convert.ToInt32(dt.Rows[0]["IdStudent"].ToString());
                 s.Email = dt.Rows[0]["Email"].ToString();
                 s.Password = dt.Rows[0]["Password"].ToString();
-                s.Name = dt.Rows[0]["Password"].ToString();
+                s.Name = dt.Rows[0]["Name"].ToString();
                 s.Phone = dt.Rows[0]["Phone"].ToString();
                 s.Avatar = dt.Rows[0]["Avatar"].ToString();
+            }
+
+            return s;
+        }
+
+
+
+        public TeacherModel checkTeacherLogin(string email, string pass)
+        {
+            string hash = hashPassword(pass);
+
+            string sql = "select top 1 * from Teacher where Email = '" + email + "' and Password = '" + hash + "'";
+
+            SqlConnection con = db.GetConnection();
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            cmd.Fill(dt);
+            cmd.Dispose();
+            con.Close();
+
+            TeacherModel s = null;
+
+            if (dt.Rows.Count > 0)
+            {
+                s = new TeacherModel();
+                s.IdTeacher = Convert.ToInt32(dt.Rows[0]["IdTeacher"].ToString());
+                s.Email = dt.Rows[0]["Email"].ToString();
+                s.Password = dt.Rows[0]["Password"].ToString();
+                s.Name = dt.Rows[0]["Name"].ToString();
+                s.Phone = dt.Rows[0]["Phone"].ToString();
+                s.Avatar = dt.Rows[0]["Avatar"].ToString();
+                s.Price = Convert.ToDouble(dt.Rows[0]["Price"].ToString());
+                s.Bio = dt.Rows[0]["Bio"].ToString();
             }
 
             return s;
@@ -94,7 +129,7 @@ namespace FindingTutor.Models
         }
 
         //Them 1 tai khoan , 1 email chi danh cho 1 tai khoản
-        public bool CreateAccount(StudentModel m)
+        public bool CreateAccount(StudentModel m, bool isTeacher)
         {
             try
             {
@@ -102,6 +137,13 @@ namespace FindingTutor.Models
                 string sql = "If not Exists (Select * from Student where Email = '" + m.Email +
                              "' ) begin insert into Student(Email,Password,Name,Phone,Avatar) values ('" + m.Email + "','" +
                              hash + "','" + m.Name + "'," + m.Phone + ",'Avatar.png') end";
+
+                if (isTeacher)
+                {
+                    sql = "If not Exists (Select * from Teacher where Email = '" + m.Email +
+                             "' ) begin insert into Teacher(Email,Password,Name,Phone,Avatar,Price) values ('" + m.Email + "','" +
+                             hash + "','" + m.Name + "'," + m.Phone + ",'Avatar.png',100000) end";
+                }
 
                 SqlConnection con = db.GetConnection();
                 SqlCommand cmd = new SqlCommand(sql, con);
@@ -125,5 +167,8 @@ namespace FindingTutor.Models
 
             return true;
         }
+
+        
+
     }
 }

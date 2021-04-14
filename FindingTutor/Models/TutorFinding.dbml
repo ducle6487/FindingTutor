@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FindingTutor" Class="TutorFindingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=FindingTutor;Persist Security Info=True;User ID=user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FindingTutorConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Courses" Member="Courses">
-    <Type Name="Course">
-      <Column Name="IdCourse" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IdGrade" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdSubject" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Course_History" Member="Histories" ThisKey="IdCourse" OtherKey="IdCourse" Type="History" />
-      <Association Name="Course_Profile" Member="Profiles" ThisKey="IdCourse" OtherKey="IdCourse" Type="Profile" />
-      <Association Name="Grade_Course" Member="Grade" ThisKey="IdGrade" OtherKey="IdGrade" Type="Grade" IsForeignKey="true" />
-      <Association Name="Subject_Course" Member="Subject" ThisKey="IdSubject" OtherKey="IdSubject" Type="Subject" IsForeignKey="true" />
-    </Type>
-  </Table>
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-JQGJFR6;Initial Catalog=FindingTutor;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FindingTutorConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Grades" Member="Grades">
     <Type Name="Grade">
       <Column Name="IdGrade" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -26,9 +15,9 @@
       <Column Name="DateTeach" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="IdCourse" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Association Name="Course_History" Member="Course" ThisKey="IdCourse" OtherKey="IdCourse" Type="Course" IsForeignKey="true" />
       <Association Name="Student_History" Member="Student" ThisKey="IdStudent" OtherKey="IdStudent" Type="Student" IsForeignKey="true" />
       <Association Name="Teacher_History" Member="Teacher" ThisKey="IdTeacher" OtherKey="IdTeacher" Type="Teacher" IsForeignKey="true" />
+      <Association Name="Course_History" Member="Course" ThisKey="IdCourse" OtherKey="IdCourse" Type="Course" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Profile" Member="Profiles">
@@ -36,8 +25,8 @@
       <Column Name="IdProfile" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IdTeacher" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdCourse" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Course_Profile" Member="Course" ThisKey="IdCourse" OtherKey="IdCourse" Type="Course" IsForeignKey="true" />
       <Association Name="Teacher_Profile" Member="Teacher" ThisKey="IdTeacher" OtherKey="IdTeacher" Type="Teacher" IsForeignKey="true" />
+      <Association Name="Course_Profile" Member="Course" ThisKey="IdCourse" OtherKey="IdCourse" Type="Course" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Qualifications" Member="Qualifications">
@@ -94,6 +83,17 @@
       <Association Name="Teacher_Profile" Member="Profiles" ThisKey="IdTeacher" OtherKey="IdTeacher" Type="Profile" />
       <Association Name="Teacher_Qualification" Member="Qualifications" ThisKey="IdTeacher" OtherKey="IdTeacher" Type="Qualification" />
       <Association Name="Teacher_Review" Member="Reviews" ThisKey="IdTeacher" OtherKey="IdTeacher" Type="Review" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Courses" Member="Courses">
+    <Type Name="Course">
+      <Column Name="IdCourse" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdGrade" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdSubject" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Course_History" Member="Histories" ThisKey="IdCourse" OtherKey="IdCourse" Type="History" />
+      <Association Name="Course_Profile" Member="Profiles" ThisKey="IdCourse" OtherKey="IdCourse" Type="Profile" />
+      <Association Name="Grade_Course" Member="Grade" ThisKey="IdGrade" OtherKey="IdGrade" Type="Grade" IsForeignKey="true" />
+      <Association Name="Subject_Course" Member="Subject" ThisKey="IdSubject" OtherKey="IdSubject" Type="Subject" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

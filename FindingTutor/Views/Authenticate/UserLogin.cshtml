@@ -37,19 +37,22 @@
                 @using (@Html.BeginForm("Register", "Authenticate"))
                 {
                     <h1>Tạo tài khoản</h1>
+                    <br/>
+                    <span>Bạn là? </span>
                     <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        <select name="type">
+                            <option value="teacher">Teacher</option>
+                            <option selected value="student">Student</option>
+                        </select>
                     </div>
-                    <span>hoặc sử dụng email của bạn để đăng ký</span>
+                    
                     <input name="name" type="text" placeholder="Name" required />
                     <input name="phone" type="tel" placeholder="Phone" pattern="[0][3|5|7|8|9][0-9]{8}" title="Số điện thoại không hợp lệ" required />
                     <input name="email" type="email" placeholder="Email" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="ví dụ: abc@gmail.com" required />
                     <input name="password" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
 
                     @*<button>Sign Up</button>
-                        <a class="aTag" href="#">Sign Up</a>*@
+            <a class="aTag" href="#">Sign Up</a>*@
                     <input type="submit" class="aTag" value="Đăng ký" />
                 }
             </div>
@@ -62,7 +65,8 @@
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                     </div>
-                    <span>hoặc sử dụng tài khoản của bạn</span>
+                    <span>hoặc sử dụng email của bạn để đăng ký</span>
+
                     <input name="email" type="email" placeholder="Email" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="ví dụ: abc@gmail.com" required />
                     <input name="password" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
                     <a href="#">Quên mật khẩu?</a>
