@@ -1,0 +1,182 @@
+﻿@model FindingTutor.Models.TeacherModel
+@using FindingTutor.Models
+@{
+    ViewBag.Title = "Tutor Management";
+}
+@{DbContext dbC = new DbContext();
+    List<FreeTimeModel> listFT = dbC.getFreeTimeOf(Model.IdTeacher);
+    List<BookingModel> listBooking = dbC.GetListBookingByIdTeacher(Model.IdTeacher);
+}
+<div class="container ">
+    <!-- fm header -->
+    <div class="row text-center pm-header">
+        <div class="col-4 margin-auto">
+            <img class="img-avatar img-circle shadow" src="~/@Model.Avatar" width="100%" height="100%">
+        </div>
+        <div class="col-8 text-center">
+            <h2 class=""><strong>@Model.Name</strong></h2>
+            <p>- @Model.Phone -</p>
+            <p class="float-left pm-price">Giá: @Model.Price.ToString("C3")/h</p>
+            <!--  -->
+            <nav class="navbar navbar-expand-lg navbar-light float-right">
+
+                <a class="navbar-brand" href="@Url.Action("EditProfile", "Tutor")">edit profile </a>
+                <a class="navbar-brand" href="@Url.Action("EditPassword", "Tutor")">Đổi passwork</a>
+            </nav>
+            <!--  -->
+        </div>
+    </div>
+    <!--  -->
+    <!-- Form request -->
+    <div class="card form-request shadow-lg">
+        <div class=" request-management">
+            <div>
+                <h2 class="text-center">Quản lý yêu cầu</h2>
+            </div>
+            <table class="table table-request-management">
+                <thread>
+                    <tr>
+                        <th>Học sinh</th>
+                        <th>Khóa học</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Chấp nhận</th>
+                        <th>Từ chối</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    @foreach (var booking in listBooking)
+                    {
+                        if (booking.Status == 0)
+                        {
+                            <tr>
+                                <td>@dbC.GetStudentByID(booking.IdStudent).Name</td>
+                                <td>@dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameSubject - @dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameGrade</td>
+                                <td>@booking.DateStart.ToString("MM/dd/yyyy")</td>
+                                <td><a class="btn btn-success" href="@Url.Action("AcceptRequest","Tutor",new {id = booking.Id })">Chấp nhận</a></td>
+                                <td><a class="btn btn-danger" href="@Url.Action("RefuseRequest","Tutor",new {id = booking.Id })">Từ chối</a></td>
+                            </tr>
+                        }
+                        
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--  -->
+    <!-- Time -->
+    <div class="card pm-time shadow-lg">
+        <div>
+            <div class="text-center pm-time-header">
+                <h2>thời gian dạy</h2>
+            </div>
+
+            @using (Html.BeginForm("SetFreeTime", "Tutor", FormMethod.Post))
+            {
+                <div class="row justify-content-around lich">
+                    <div class="col-5">
+                        <table class="text-center ">
+                            <tr>
+                                <th class="border-tick-time"></th>
+                                <th class="border-tick-time">Mon</th>
+                                <th class="border-tick-time">Tue</th>
+                                <th class="border-tick-time">Wed</th>
+                                <th class="border-tick-time">Thu</th>
+                                <th class="border-tick-time">Fri</th>
+                                <th class="border-tick-time">Sat</th>
+                                <th class="border-tick-time">Sun</th>
+                            </tr>
+                            @{
+                                int index = 1;
+                                for (int r = 6; r < 23; r++)
+                                {
+                                    <tr>
+                                        <th class="border-tick-time">@r h</th>
+                                        @for (int j = 0; j < 7; j++)
+                                        {
+                                            if (listFT.SingleOrDefault(n => n.Index == index) != null)
+                                            {
+                                                <td class="border-tick-time">
+                                                    <input class="checkbox" type="checkbox" name="@index" checked />
+                                                    @{ index++;}
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="border-tick-time">
+                                                    <input class="checkbox" type="checkbox" name="@index" />
+                                                    @{ index++;}
+                                                </td>
+
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            }
+
+
+                        </table>
+                    </div>
+
+                </div>
+                <div class="pm-time-btn text-center text-light"><input class="btn btn-success" value="Cập Nhật" type="submit" /></div>
+            }
+        </div>
+
+    </div>
+    <!--  -->
+    <!-- Subject -->
+    @{ List<CourseModel> listCourse = dbC.getAllCourse();
+        List<ProfileModel> listProf = dbC.getProfileOf(Model.IdTeacher);
+    }
+    <div class="pm-subject card shadow-lg">
+        @using (@Html.BeginForm("SubjectManage", "Tutor", FormMethod.Post))
+        {
+            <div>
+                <h2 class="text-center">Quản lý cấp chương trình dạy</h2>
+            </div>
+            <table class="table table-request-management">
+                <thread>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Course</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    @foreach (var course in listCourse)
+                    {
+                        <tr>
+                            <td>@course.NameSubject</td>
+                            <td>@course.NameGrade</td>
+                            @if (listProf.SingleOrDefault(n => n.IdCourse == course.IdCourse) != null)
+                            {
+                                <td><input type="checkbox" name="@course.IdCourse" checked></td>
+                            }
+                            else
+                            {
+                                <td><input type="checkbox" name="@course.IdCourse"></td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="text-center"><input class="btn btn-success" value="Cập nhật" type="submit"></div>
+        }
+    </div>
+    <!--  -->
+    <!-- Bio -->
+    <div class="card pm-bio shadow-lg">
+        <div class="pm-bio-header">
+            <h2 class="text-center">Tiểu sử</h2>
+        </div>
+        <div class="pm-bio-body">
+            <p>
+                @Model.Bio
+            </p>
+        </div>
+    </div>
+
+</div>
+

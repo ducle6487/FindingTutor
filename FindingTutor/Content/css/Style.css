@@ -195,7 +195,90 @@ div.intro-home {
 .edit-form {
     margin: 50px auto;
 }
+/* ==============Profile Management============ */
+.pm-header {
+    padding: 20px 20px;
+    background-image: url('../Image/hinh-anh-background-o-mat-cao.jpg');
+}
+
+    .pm-header h2 {
+        margin-top: 20px;
+    }
+
+.form-request {
+    margin: 30px 0px;
+}
+
+.request-management {
+    margin: 40px 30px;
+}
+
+.table-request-management {
+    margin-top: 20px;
+}
+
+.border-tick-time {
+    height: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    width: 55px;
+    min-width: 55px;
+    max-width: 55px;
+    margin: 1px;
+    padding: 1px;
+    border: black 1px solid;
+}
+
+.pm-time {
+    margin: 40px 0px;
+}
+
+.pm-time-header {
+    margin: 30px 0px;
+}
+
+.lich {
+    margin: 30px 0px;
+    font-size: 18px;
+}
+
+.pm-time-btn {
+    margin: 50px auto;
+}
+
+.pm-bio {
+    margin: 30px 0px;
+}
+
+.pm-bio-header {
+    margin: 30px 0px;
+}
+
+.pm-bio-body {
+    padding: 20px 50px;
+}
+
+    .pm-bio-body p {
+        margin: 10px 30px;
+    }
+
+.pm-price {
+    font-weight: bold;
+    color: #d60e18;
+}
+.pm-subject {
+    padding: 70px 60px;
+}
 /* ====================BOX================= */
+.box-230 {
+    height: 230px;
+    min-height: 230px;
+    max-height: 230px;
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+}
+
 .box-200h {
     height: 200px;
     min-height: 200px;
@@ -237,4 +320,17 @@ div.intro-home {
     width: 60px;
     min-width: 60px;
     max-width: 60px;
+}
+
+.img-avatar {
+    height: 230px;
+    min-height: 230px;
+    max-height: 230px;
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+}
+
+.margin-auto {
+    margin: 0px auto;
 }

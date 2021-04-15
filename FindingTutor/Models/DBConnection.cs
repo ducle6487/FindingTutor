@@ -11,9 +11,9 @@ namespace FindingTutor.Models
     {
         private string strCon;
 
-        public DBConnection()
+        public DBConnection()   
         {
-            strCon = ConfigurationManager.ConnectionStrings["FindingTutorConnectionString"].ConnectionString;
+            strCon = ConfigurationManager.ConnectionStrings["FindingTutorConnectionString2"].ConnectionString;
         }
 
         public SqlConnection GetConnection()

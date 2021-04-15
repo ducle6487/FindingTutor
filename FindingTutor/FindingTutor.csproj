@@ -126,12 +126,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingModel.cs" />
+    <Compile Include="Models\CourseModel.cs" />
     <Compile Include="Models\DBConnection.cs" />
-    <Compile Include="Models\TutorFinding.designer.cs">
+    <Compile Include="Models\DbContext.cs" />
+    <Compile Include="Models\FreeTimeModel.cs" />
+    <Compile Include="Models\MyData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TutorFinding.dbml</DependentUpon>
+      <DependentUpon>MyData.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\StudentModel.cs" />
+    <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +148,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\Style.css" />
+    <Content Include="Content\Image\avatar\PhamMinhSang.png" />
     <Content Include="Content\Image\background.jpg" />
+    <Content Include="Content\Image\hinh-anh-background-o-mat-cao.jpg" />
     <Content Include="Content\Image\icon-home.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -149,13 +158,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\TutorFinding.dbml">
+    <Content Include="Models\MyData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>TutorFinding.designer.cs</LastGenOutput>
+      <LastGenOutput>MyData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\TutorFinding.dbml.layout">
-      <DependentUpon>TutorFinding.dbml</DependentUpon>
+    <None Include="Models\MyData.dbml.layout">
+      <DependentUpon>MyData.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -184,6 +193,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Tutor\Profile.cshtml" />
     <Content Include="Views\Tutor\EditProfile.cshtml" />
+    <Content Include="Views\Tutor\EditPassword.cshtml" />
+    <Content Include="Views\Tutor\TutorManagement.cshtml" />
+    <Content Include="Views\Tutor\Login.cshtml" />
+    <Content Include="Views\Tutor\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
