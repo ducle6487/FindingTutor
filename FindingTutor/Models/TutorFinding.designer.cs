@@ -30,9 +30,6 @@ namespace FindingTutor.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCourse(Course instance);
-    partial void UpdateCourse(Course instance);
-    partial void DeleteCourse(Course instance);
     partial void InsertGrade(Grade instance);
     partial void UpdateGrade(Grade instance);
     partial void DeleteGrade(Grade instance);
@@ -57,10 +54,13 @@ namespace FindingTutor.Models
     partial void InsertTeacher(Teacher instance);
     partial void UpdateTeacher(Teacher instance);
     partial void DeleteTeacher(Teacher instance);
+    partial void InsertCourse(Course instance);
+    partial void UpdateCourse(Course instance);
+    partial void DeleteCourse(Course instance);
     #endregion
 		
 		public TutorFindingDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FindingTutorConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FindingTutorConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -87,14 +87,6 @@ namespace FindingTutor.Models
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Course> Courses
-		{
-			get
-			{
-				return this.GetTable<Course>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Grade> Grades
@@ -160,253 +152,13 @@ namespace FindingTutor.Models
 				return this.GetTable<Teacher>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Courses")]
-	public partial class Course : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IdCourse;
-		
-		private System.Nullable<int> _IdGrade;
-		
-		private System.Nullable<int> _IdSubject;
-		
-		private EntitySet<History> _Histories;
-		
-		private EntitySet<Profile> _Profiles;
-		
-		private EntityRef<Grade> _Grade;
-		
-		private EntityRef<Subject> _Subject;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdCourseChanging(int value);
-    partial void OnIdCourseChanged();
-    partial void OnIdGradeChanging(System.Nullable<int> value);
-    partial void OnIdGradeChanged();
-    partial void OnIdSubjectChanging(System.Nullable<int> value);
-    partial void OnIdSubjectChanged();
-    #endregion
-		
-		public Course()
-		{
-			this._Histories = new EntitySet<History>(new Action<History>(this.attach_Histories), new Action<History>(this.detach_Histories));
-			this._Profiles = new EntitySet<Profile>(new Action<Profile>(this.attach_Profiles), new Action<Profile>(this.detach_Profiles));
-			this._Grade = default(EntityRef<Grade>);
-			this._Subject = default(EntityRef<Subject>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCourse", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IdCourse
+		public System.Data.Linq.Table<Course> Courses
 		{
 			get
 			{
-				return this._IdCourse;
+				return this.GetTable<Course>();
 			}
-			set
-			{
-				if ((this._IdCourse != value))
-				{
-					this.OnIdCourseChanging(value);
-					this.SendPropertyChanging();
-					this._IdCourse = value;
-					this.SendPropertyChanged("IdCourse");
-					this.OnIdCourseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGrade", DbType="Int")]
-		public System.Nullable<int> IdGrade
-		{
-			get
-			{
-				return this._IdGrade;
-			}
-			set
-			{
-				if ((this._IdGrade != value))
-				{
-					if (this._Grade.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdGradeChanging(value);
-					this.SendPropertyChanging();
-					this._IdGrade = value;
-					this.SendPropertyChanged("IdGrade");
-					this.OnIdGradeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSubject", DbType="Int")]
-		public System.Nullable<int> IdSubject
-		{
-			get
-			{
-				return this._IdSubject;
-			}
-			set
-			{
-				if ((this._IdSubject != value))
-				{
-					if (this._Subject.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdSubjectChanging(value);
-					this.SendPropertyChanging();
-					this._IdSubject = value;
-					this.SendPropertyChanged("IdSubject");
-					this.OnIdSubjectChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_History", Storage="_Histories", ThisKey="IdCourse", OtherKey="IdCourse")]
-		public EntitySet<History> Histories
-		{
-			get
-			{
-				return this._Histories;
-			}
-			set
-			{
-				this._Histories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Profile", Storage="_Profiles", ThisKey="IdCourse", OtherKey="IdCourse")]
-		public EntitySet<Profile> Profiles
-		{
-			get
-			{
-				return this._Profiles;
-			}
-			set
-			{
-				this._Profiles.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Grade_Course", Storage="_Grade", ThisKey="IdGrade", OtherKey="IdGrade", IsForeignKey=true)]
-		public Grade Grade
-		{
-			get
-			{
-				return this._Grade.Entity;
-			}
-			set
-			{
-				Grade previousValue = this._Grade.Entity;
-				if (((previousValue != value) 
-							|| (this._Grade.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Grade.Entity = null;
-						previousValue.Courses.Remove(this);
-					}
-					this._Grade.Entity = value;
-					if ((value != null))
-					{
-						value.Courses.Add(this);
-						this._IdGrade = value.IdGrade;
-					}
-					else
-					{
-						this._IdGrade = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Grade");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_Course", Storage="_Subject", ThisKey="IdSubject", OtherKey="IdSubject", IsForeignKey=true)]
-		public Subject Subject
-		{
-			get
-			{
-				return this._Subject.Entity;
-			}
-			set
-			{
-				Subject previousValue = this._Subject.Entity;
-				if (((previousValue != value) 
-							|| (this._Subject.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Subject.Entity = null;
-						previousValue.Courses.Remove(this);
-					}
-					this._Subject.Entity = value;
-					if ((value != null))
-					{
-						value.Courses.Add(this);
-						this._IdSubject = value.IdSubject;
-					}
-					else
-					{
-						this._IdSubject = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Subject");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Histories(History entity)
-		{
-			this.SendPropertyChanging();
-			entity.Course = this;
-		}
-		
-		private void detach_Histories(History entity)
-		{
-			this.SendPropertyChanging();
-			entity.Course = null;
-		}
-		
-		private void attach_Profiles(Profile entity)
-		{
-			this.SendPropertyChanging();
-			entity.Course = this;
-		}
-		
-		private void detach_Profiles(Profile entity)
-		{
-			this.SendPropertyChanging();
-			entity.Course = null;
 		}
 	}
 	
@@ -542,11 +294,11 @@ namespace FindingTutor.Models
 		
 		private System.Nullable<decimal> _Price;
 		
-		private EntityRef<Course> _Course;
-		
 		private EntityRef<Student> _Student;
 		
 		private EntityRef<Teacher> _Teacher;
+		
+		private EntityRef<Course> _Course;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -568,9 +320,9 @@ namespace FindingTutor.Models
 		
 		public History()
 		{
-			this._Course = default(EntityRef<Course>);
 			this._Student = default(EntityRef<Student>);
 			this._Teacher = default(EntityRef<Teacher>);
+			this._Course = default(EntityRef<Course>);
 			OnCreated();
 		}
 		
@@ -706,40 +458,6 @@ namespace FindingTutor.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_History", Storage="_Course", ThisKey="IdCourse", OtherKey="IdCourse", IsForeignKey=true)]
-		public Course Course
-		{
-			get
-			{
-				return this._Course.Entity;
-			}
-			set
-			{
-				Course previousValue = this._Course.Entity;
-				if (((previousValue != value) 
-							|| (this._Course.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Course.Entity = null;
-						previousValue.Histories.Remove(this);
-					}
-					this._Course.Entity = value;
-					if ((value != null))
-					{
-						value.Histories.Add(this);
-						this._IdCourse = value.IdCourse;
-					}
-					else
-					{
-						this._IdCourse = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Course");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Student_History", Storage="_Student", ThisKey="IdStudent", OtherKey="IdStudent", IsForeignKey=true)]
 		public Student Student
 		{
@@ -808,6 +526,40 @@ namespace FindingTutor.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_History", Storage="_Course", ThisKey="IdCourse", OtherKey="IdCourse", IsForeignKey=true)]
+		public Course Course
+		{
+			get
+			{
+				return this._Course.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course.Entity;
+				if (((previousValue != value) 
+							|| (this._Course.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course.Entity = null;
+						previousValue.Histories.Remove(this);
+					}
+					this._Course.Entity = value;
+					if ((value != null))
+					{
+						value.Histories.Add(this);
+						this._IdCourse = value.IdCourse;
+					}
+					else
+					{
+						this._IdCourse = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -841,9 +593,9 @@ namespace FindingTutor.Models
 		
 		private System.Nullable<int> _IdCourse;
 		
-		private EntityRef<Course> _Course;
-		
 		private EntityRef<Teacher> _Teacher;
+		
+		private EntityRef<Course> _Course;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -859,8 +611,8 @@ namespace FindingTutor.Models
 		
 		public Profile()
 		{
-			this._Course = default(EntityRef<Course>);
 			this._Teacher = default(EntityRef<Teacher>);
+			this._Course = default(EntityRef<Course>);
 			OnCreated();
 		}
 		
@@ -932,40 +684,6 @@ namespace FindingTutor.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Profile", Storage="_Course", ThisKey="IdCourse", OtherKey="IdCourse", IsForeignKey=true)]
-		public Course Course
-		{
-			get
-			{
-				return this._Course.Entity;
-			}
-			set
-			{
-				Course previousValue = this._Course.Entity;
-				if (((previousValue != value) 
-							|| (this._Course.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Course.Entity = null;
-						previousValue.Profiles.Remove(this);
-					}
-					this._Course.Entity = value;
-					if ((value != null))
-					{
-						value.Profiles.Add(this);
-						this._IdCourse = value.IdCourse;
-					}
-					else
-					{
-						this._IdCourse = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Course");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Teacher_Profile", Storage="_Teacher", ThisKey="IdTeacher", OtherKey="IdTeacher", IsForeignKey=true)]
 		public Teacher Teacher
 		{
@@ -996,6 +714,40 @@ namespace FindingTutor.Models
 						this._IdTeacher = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Teacher");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Profile", Storage="_Course", ThisKey="IdCourse", OtherKey="IdCourse", IsForeignKey=true)]
+		public Course Course
+		{
+			get
+			{
+				return this._Course.Entity;
+			}
+			set
+			{
+				Course previousValue = this._Course.Entity;
+				if (((previousValue != value) 
+							|| (this._Course.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Course.Entity = null;
+						previousValue.Profiles.Remove(this);
+					}
+					this._Course.Entity = value;
+					if ((value != null))
+					{
+						value.Profiles.Add(this);
+						this._IdCourse = value.IdCourse;
+					}
+					else
+					{
+						this._IdCourse = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Course");
 				}
 			}
 		}
@@ -2151,6 +1903,254 @@ namespace FindingTutor.Models
 		{
 			this.SendPropertyChanging();
 			entity.Teacher = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Courses")]
+	public partial class Course : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IdCourse;
+		
+		private System.Nullable<int> _IdGrade;
+		
+		private System.Nullable<int> _IdSubject;
+		
+		private EntitySet<History> _Histories;
+		
+		private EntitySet<Profile> _Profiles;
+		
+		private EntityRef<Grade> _Grade;
+		
+		private EntityRef<Subject> _Subject;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdCourseChanging(int value);
+    partial void OnIdCourseChanged();
+    partial void OnIdGradeChanging(System.Nullable<int> value);
+    partial void OnIdGradeChanged();
+    partial void OnIdSubjectChanging(System.Nullable<int> value);
+    partial void OnIdSubjectChanged();
+    #endregion
+		
+		public Course()
+		{
+			this._Histories = new EntitySet<History>(new Action<History>(this.attach_Histories), new Action<History>(this.detach_Histories));
+			this._Profiles = new EntitySet<Profile>(new Action<Profile>(this.attach_Profiles), new Action<Profile>(this.detach_Profiles));
+			this._Grade = default(EntityRef<Grade>);
+			this._Subject = default(EntityRef<Subject>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdCourse", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IdCourse
+		{
+			get
+			{
+				return this._IdCourse;
+			}
+			set
+			{
+				if ((this._IdCourse != value))
+				{
+					this.OnIdCourseChanging(value);
+					this.SendPropertyChanging();
+					this._IdCourse = value;
+					this.SendPropertyChanged("IdCourse");
+					this.OnIdCourseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGrade", DbType="Int")]
+		public System.Nullable<int> IdGrade
+		{
+			get
+			{
+				return this._IdGrade;
+			}
+			set
+			{
+				if ((this._IdGrade != value))
+				{
+					if (this._Grade.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdGradeChanging(value);
+					this.SendPropertyChanging();
+					this._IdGrade = value;
+					this.SendPropertyChanged("IdGrade");
+					this.OnIdGradeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdSubject", DbType="Int")]
+		public System.Nullable<int> IdSubject
+		{
+			get
+			{
+				return this._IdSubject;
+			}
+			set
+			{
+				if ((this._IdSubject != value))
+				{
+					if (this._Subject.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdSubjectChanging(value);
+					this.SendPropertyChanging();
+					this._IdSubject = value;
+					this.SendPropertyChanged("IdSubject");
+					this.OnIdSubjectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_History", Storage="_Histories", ThisKey="IdCourse", OtherKey="IdCourse")]
+		public EntitySet<History> Histories
+		{
+			get
+			{
+				return this._Histories;
+			}
+			set
+			{
+				this._Histories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Profile", Storage="_Profiles", ThisKey="IdCourse", OtherKey="IdCourse")]
+		public EntitySet<Profile> Profiles
+		{
+			get
+			{
+				return this._Profiles;
+			}
+			set
+			{
+				this._Profiles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Grade_Course", Storage="_Grade", ThisKey="IdGrade", OtherKey="IdGrade", IsForeignKey=true)]
+		public Grade Grade
+		{
+			get
+			{
+				return this._Grade.Entity;
+			}
+			set
+			{
+				Grade previousValue = this._Grade.Entity;
+				if (((previousValue != value) 
+							|| (this._Grade.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Grade.Entity = null;
+						previousValue.Courses.Remove(this);
+					}
+					this._Grade.Entity = value;
+					if ((value != null))
+					{
+						value.Courses.Add(this);
+						this._IdGrade = value.IdGrade;
+					}
+					else
+					{
+						this._IdGrade = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Grade");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_Course", Storage="_Subject", ThisKey="IdSubject", OtherKey="IdSubject", IsForeignKey=true)]
+		public Subject Subject
+		{
+			get
+			{
+				return this._Subject.Entity;
+			}
+			set
+			{
+				Subject previousValue = this._Subject.Entity;
+				if (((previousValue != value) 
+							|| (this._Subject.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Subject.Entity = null;
+						previousValue.Courses.Remove(this);
+					}
+					this._Subject.Entity = value;
+					if ((value != null))
+					{
+						value.Courses.Add(this);
+						this._IdSubject = value.IdSubject;
+					}
+					else
+					{
+						this._IdSubject = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Subject");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Histories(History entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = this;
+		}
+		
+		private void detach_Histories(History entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = null;
+		}
+		
+		private void attach_Profiles(Profile entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = this;
+		}
+		
+		private void detach_Profiles(Profile entity)
+		{
+			this.SendPropertyChanging();
+			entity.Course = null;
 		}
 	}
 }

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Message</title>
+</head>
+<body>
+    <div style="width: 30%; float: left">
+        @Html.Action("ChatList", new { s = ViewBag.id })
+    </div>
+    <div style="width: 30%; float: right; background-color: blue">
+        @Html.Action("ChatContent", new { s = ViewBag.message })
+    </div>
+</body>
+</html>
