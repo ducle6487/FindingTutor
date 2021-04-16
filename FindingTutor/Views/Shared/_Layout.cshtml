@@ -21,7 +21,7 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item">
@@ -40,7 +40,7 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-                        
+
                     </div>
 
                     <li class="nav-item">
@@ -49,21 +49,70 @@
 
                 </ul>
 
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
-    
+
     <div class="container-fluid body-content">
         @RenderBody()
-        <hr />
-        <footer class="container">
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <footer class="container-fluid footer-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-2 footer-col-link">
+                    <h4 class="footer-tittle-col"><strong>Toán</strong></h4>
+                    <p><a href="#">Hình học</a></p>
+                    <p><a href="#">Tuyến tính</a></p>
+                    <p><a href="#">Xác suất</a></p>
+                    <p><a href="#">IQ</a></p>
+                    <p><a href="#">Logic</a></p>
+                    <p><a href="#">Giải tích</a></p>
+                    <p><a href="#">Đồ thị</a></p>
+                    <p><a href="#">Hàm số</a></p>
+                    <p><a href="#">Tư duy</a></p>
+                    <p><a href="#">Đẹp trai</a></p>
+                </div>
+                <div class="col-2 footer-col-link">
+                    <h4 class="footer-tittle-col"><strong>Tiếng anh</strong></h4>
+                    <p><a href="#">IELTS</a></p>
+                    <p><a href="#">TOEFL</a></p>
+                    <p><a href="#">BASIC</a></p>
+                    <p><a href="#">SPEAKING</a></p>
+                    <p><a href="#">READING</a></p>
+                    <p><a href="#">LISTENING</a></p>
+                    <h4 class="footer-tittle-col"><strong>Vật lý</strong></h4>
+                    <p><a href="#">Đại cương</a></p>
+                    <p><a href="#">Nâng cao</a></p>
+                </div>
+                <div class="col-2 footer-col-link">
+                    <h4 class="footer-tittle-col"><strong>Tin</strong></h4>
+                    <p><a href="#">C/C++</a></p>
+                    <p><a href="#">Java</a></p>
+                    <p><a href="#">C#</a></p>
+                    <p><a href="#">Kolin</a></p>
+                    <p><a href="#">Rubic</a></p>
+                    <p><a href="#">Javascript</a></p>
+                    <p><a href="#">Html/Css</a></p>
+                    <h4 class="footer-tittle-col"><strong>Học nào</strong></h4>
+                    <p><a href="#">Đăng ký</a></p>
+                    <p><a href="#">Đăng nhập</a></p>
+                </div>
+                <div class="col-6 ">
+                    <div class="contact">
+                        <h3><strong>Liên hệ với chúng tôi!</strong></h3>
+                        <p>Email: harley20005@gmail.com <br>hoặc: ducle6487@gmail.com</p>
+                        <h4><strong>Kết nối với chúng tôi</strong></h4>
+                        <div>
+                            <img class="img-circle" src="~/Content/Image/Facebook-200x200.jpg" width="80px" height="80px">
+                            <img class="img-circle" src="~/Content/Image/Twitter-1.jpg" width="80px" height="80px">
+                            <img class="img-circle" src="~/Content/Image/zalo_sharelogo.png" width="80px" height="80px">
+                        </div>
+                    </div>
+                    <div class="copyright">Copyright &copy; Sang - Đức</div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -49,7 +49,7 @@
                 <div class="profile-review">
                     <div class="row justify-content-between ">
                         <div class="col-2 text-center">
-                            <img src="../../Content/Image/background.jpg" class="img-circle img-comment" width="100%" height="100%">
+                            <img src="~/Content/Image/avatar/avatar-anime-đeo-kính.jpg" class="img-circle img-comment" width="100%" height="100%">
                             <p>Sang Pham</p>
                         </div>
                         <div class="col-10">
@@ -66,7 +66,7 @@
                     <hr>
                     <div class="row justify-content-between ">
                         <div class="col-2 text-center">
-                            <img src="../../Content/Image/background.jpg" class="img-circle img-comment" width="100%" height="100%">
+                            <img src="~/Content/Image/avatar/top-100-buc-anh-anime-lam-avatar-chat-nhat-qua-dat.jpg" class="img-circle img-comment" width="100%" height="100%">
                             <p>Anh Duc</p>
                         </div>
                         <div class="col-10">
@@ -99,7 +99,7 @@
             @{
                 List<FreeTimeModel> listFT = dbC.getFreeTimeOf(Model.IdTeacher); }
                 <div class="card shadow profile-intro">
-                    <h3><strong>My Review</strong></h3>
+                    <h3><strong>Thời gian có thể đăng ký</strong></h3>
                     <div class="profile-review">
                         <div class="row justify-content-around lich">
                             <div class="col-5">
@@ -125,7 +125,7 @@
                                                     if (listFT.SingleOrDefault(n => n.Index == index) != null)
                                                     {
                                                         <td class="border-tick-time">
-                                                            <input class="checkbox" type="checkbox" name="@index" checked />
+                                                            <input class="checkbox" type="checkbox" name="@index" checked disabled/>
                                                             @{ index++;}
                                                         </td>
                                                     }

@@ -159,6 +159,32 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
+        // update status
+        public void UpdateStatusFreeTime(int IdTeacher, List<TimeBookingModel> b, int status)
+        {
+            string sql = "";
+
+            if (b.Count > 0)
+            {
+                foreach (TimeBookingModel i in b)
+                {
+                    sql = "update FreeTime set Status = " + status + " where IdTeacher = " + IdTeacher +
+                          " and TableIndex = " + i.Index;
+                    SqlConnection con = db.GetConnection();
+                    SqlCommand cmd = new SqlCommand(sql, con);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    con.Close();
+                }
+            }
+            else
+            {
+                return;
+            }
+
+        }
         // Get list khóa dạy
         public List<CourseModel> getAllCourse()
         {
@@ -305,7 +331,7 @@ namespace FindingTutor.Models
             return p;
         }
         // cập nhập status cho booking
-        public bool UpdateStatusOfBooking(int id,int status)
+        public bool UpdateStatusOfBooking(int id,int status, List<TimeBookingModel> listTimeBooking)
         {
             string sql = "Update Booking set Status = '" + status + "'  where Id = " + id;
             SqlConnection con = db.GetConnection();
@@ -316,6 +342,7 @@ namespace FindingTutor.Models
 
             cmd.Dispose();
             con.Close();
+            
 
             return result > 0;
         }
@@ -343,6 +370,34 @@ namespace FindingTutor.Models
             p.Avatar = dt.Rows[0]["Avatar"].ToString();
 
             return p;
+        }
+        // TimeBooking
+        //  lấy list timebooking theo id student và id tutor
+        public List<TimeBookingModel> GetListTimeBookingById(int idTutor, int idStudent)
+        {
+            string sql = "select tb.* from TimeBooking tb,Booking b" +
+                "  where tb.IdBooking = b.Id and b.IdTeacher = "+idTutor+" and b.IdStudent = "+ idStudent;
+            List<TimeBookingModel> list = new List<TimeBookingModel>();
+
+            SqlConnection con = db.GetConnection();
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            cmd.Fill(dt);
+            cmd.Dispose();
+            con.Close();
+            TimeBookingModel p;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                p = new TimeBookingModel();
+                p.IdTime = Convert.ToInt32(dt.Rows[i]["IdTime"].ToString());
+                p.Index = Convert.ToInt32(dt.Rows[i]["IndexTable"].ToString());
+                p.IdBooking = Convert.ToInt32(dt.Rows[i]["IdBooking"].ToString());
+                list.Add(p);
+            }
+
+            return list;
         }
     }
 }

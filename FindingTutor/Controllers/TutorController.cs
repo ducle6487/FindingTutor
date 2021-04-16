@@ -181,7 +181,8 @@ namespace FindingTutor.Controllers
         //[HttpPost]
         public ActionResult AcceptRequest(int id)
         {
-            if (dbC.UpdateStatusOfBooking(id,1))
+            List<TimeBookingModel> ltb = new List<TimeBookingModel>(); // khong dungf
+            if (dbC.UpdateStatusOfBooking(id,1, ltb))
             {
                 return RedirectToAction("TutorManagement");
             }
@@ -191,10 +192,12 @@ namespace FindingTutor.Controllers
             }
         }
         //[HttpPost]
-        public ActionResult RefuseRequest(int id)
+        public ActionResult RefuseRequest(int id,int idTutor, int idStudent )
         {
-            if (dbC.UpdateStatusOfBooking(id, -1))
+            List<TimeBookingModel> ltb = dbC.GetListTimeBookingById(idTutor, idStudent); ;
+            if (dbC.UpdateStatusOfBooking(id, -1, ltb))
             {
+                dbC.UpdateStatusFreeTime(idTutor,ltb,0);
                 return RedirectToAction("TutorManagement");
             }
             else

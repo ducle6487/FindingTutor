@@ -46,14 +46,14 @@
                 <tbody>
                     @foreach (var booking in listBooking)
                     {
-                        if (booking.Status == 0)
+                        if (booking.Status == 0 )
                         {
                             <tr>
                                 <td>@dbC.GetStudentByID(booking.IdStudent).Name</td>
                                 <td>@dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameSubject - @dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameGrade</td>
                                 <td>@booking.DateStart.ToString("MM/dd/yyyy")</td>
-                                <td><a class="btn btn-success" href="@Url.Action("AcceptRequest","Tutor",new {id = booking.Id })">Chấp nhận</a></td>
-                                <td><a class="btn btn-danger" href="@Url.Action("RefuseRequest","Tutor",new {id = booking.Id })">Từ chối</a></td>
+                                <td><a class="btn btn-success" href="@Url.Action("AcceptRequest","Tutor",new {id = booking.Id})">Chấp nhận</a></td>
+                                <td><a class="btn btn-danger" href="@Url.Action("RefuseRequest","Tutor",new {id = booking.Id,idTutor = booking.IdTeacher, idStudent=booking.IdStudent  })">Từ chối</a></td>
                             </tr>
                         }
                         
