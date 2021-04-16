@@ -45,6 +45,36 @@ namespace FindingTutor.Models
             }
             return listAcc;
         }
+        public TeacherModel GetTutorById(int ID)
+        {
+            string sql = "select * from Teacher where IdTeacher = "+ID;
+
+            
+            SqlConnection con = db.GetConnection();
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            cmd.Fill(dt);
+            cmd.Dispose();
+            con.Close();
+
+            TeacherModel acc= new TeacherModel();;
+            if (dt.Rows[0]["IdTeacher"] == null)
+            {
+                return acc;
+            }
+                acc.IdTeacher = Convert.ToInt32(dt.Rows[0]["IdTeacher"].ToString());
+                acc.Email = dt.Rows[0]["Email"].ToString();
+                acc.Password = dt.Rows[0]["Password"].ToString();
+                acc.Name = dt.Rows[0]["Name"].ToString();
+                acc.Phone = Convert.ToDecimal(dt.Rows[0]["Phone"].ToString());
+                acc.Price = Convert.ToDecimal(dt.Rows[0]["Price"].ToString());
+                acc.Avatar = dt.Rows[0]["Avatar"].ToString();
+                acc.Bio = dt.Rows[0]["Bio"].ToString();
+
+            return acc;
+        }
         public bool EditProfile(TeacherModel tutor)
         {
             string sql = "Update Teacher set Name = N'" + tutor.Name + "',Phone = '" + tutor.Phone +
@@ -296,6 +326,34 @@ namespace FindingTutor.Models
                 p.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());                
                 p.DateStart = Convert.ToDateTime(dt.Rows[i]["DateStart"].ToString());
                 p.Status= Convert.ToInt32(dt.Rows[i]["Status"].ToString());
+                p.IdCourse = Convert.ToInt32(dt.Rows[i]["IdCourse"].ToString());
+                list.Add(p);
+            }
+
+            return list;
+        }
+        public List<BookingModel> GetListBookingByStatus(int status)
+        {
+            string sql = "select * from Booking where Status = " + status;
+            List<BookingModel> list = new List<BookingModel>();
+
+            SqlConnection con = db.GetConnection();
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            cmd.Fill(dt);
+            cmd.Dispose();
+            con.Close();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                BookingModel p = new BookingModel();
+                p.Id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
+                p.IdStudent = Convert.ToInt32(dt.Rows[i]["IdStudent"].ToString());
+                p.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());
+                p.DateStart = Convert.ToDateTime(dt.Rows[i]["DateStart"].ToString());
+                p.Status = Convert.ToInt32(dt.Rows[i]["Status"].ToString());
                 p.IdCourse = Convert.ToInt32(dt.Rows[i]["IdCourse"].ToString());
                 list.Add(p);
             }

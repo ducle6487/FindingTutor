@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TutorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -153,8 +154,10 @@
     <Content Include="Content\Image\avatar\6245ac3575e3ac879dd0b3cdf1727600.jpg" />
     <Content Include="Content\Image\avatar\avatar-anime-12.jpg" />
     <Content Include="Content\Image\avatar\avatar-anime-đeo-kính.jpg" />
+    <Content Include="Content\Image\avatar\duc.jpg" />
     <Content Include="Content\Image\avatar\images.jpg" />
     <Content Include="Content\Image\avatar\PhamMinhSang.png" />
+    <Content Include="Content\Image\avatar\sang.jpg" />
     <Content Include="Content\Image\avatar\top-100-buc-anh-anime-lam-avatar-chat-nhat-qua-dat.jpg" />
     <Content Include="Content\Image\background.jpg" />
     <Content Include="Content\Image\Facebook-200x200.jpg" />
@@ -208,6 +211,7 @@
     <Content Include="Views\Tutor\TutorManagement.cshtml" />
     <Content Include="Views\Tutor\Login.cshtml" />
     <Content Include="Views\Tutor\Register.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
