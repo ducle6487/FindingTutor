@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TutorController.cs" />
@@ -131,6 +132,11 @@
     <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\ConservationModel.cs" />
     <Compile Include="Models\CourseModel.cs" />
+    <Compile Include="Models\DatabaseFT.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseFT.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Models\FreeTimeModel.cs" />
     <Compile Include="Models\GradeModel.cs" />
@@ -139,16 +145,7 @@
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\SubjectModel.cs" />
     <Compile Include="Models\TeacherInfoModel.cs" />
-    <Compile Include="Models\TeacherModel.cs" />
-    <Compile Include="Models\TutorFinding.designer.cs">
     <Compile Include="Models\DbContext.cs" />
-    <Compile Include="Models\MyData.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyData.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProfileModel.cs" />
-    <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\TimeBookingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -192,13 +189,13 @@
     <Content Include="Content\image\x.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\MyData.dbml">
+    <Content Include="Models\DatabaseFT.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>MyData.designer.cs</LastGenOutput>
+      <LastGenOutput>DatabaseFT.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\MyData.dbml.layout">
-      <DependentUpon>MyData.dbml</DependentUpon>
+    <None Include="Models\DatabaseFT.dbml.layout">
+      <DependentUpon>DatabaseFT.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -230,15 +227,14 @@
     <Content Include="Views\Shared\ChatContent.cshtml" />
     <Content Include="Views\Home\FindTutor.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Tutor\Profile.cshtml" />
     <Content Include="Views\Tutor\EditProfile.cshtml" />
     <Content Include="Views\Tutor\EditPassword.cshtml" />
     <Content Include="Views\Tutor\TutorManagement.cshtml" />
-    <Content Include="Views\Tutor\Login.cshtml" />
-    <Content Include="Views\Tutor\Register.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace FindingTutor.Models
 {
     public class DbContext
     {
         private DBConnection db;
+
         public DbContext()
         {
             db = new DBConnection();
         }
+
         public List<TeacherModel> GetListTutor()
         {
             string sql = "select * from Teacher";
@@ -36,8 +36,8 @@ namespace FindingTutor.Models
                 acc.Email = dt.Rows[i]["Email"].ToString();
                 acc.Password = dt.Rows[i]["Password"].ToString();
                 acc.Name = dt.Rows[i]["Name"].ToString();
-                acc.Phone = Convert.ToDecimal(dt.Rows[i]["Phone"].ToString());
-                acc.Price = Convert.ToDecimal(dt.Rows[i]["Price"].ToString());
+                acc.Phone = dt.Rows[i]["Phone"].ToString();
+                acc.Price = Convert.ToDouble(dt.Rows[i]["Price"].ToString());
                 acc.Avatar = dt.Rows[i]["Avatar"].ToString();
                 acc.Bio = dt.Rows[i]["Bio"].ToString();
 
@@ -45,11 +45,11 @@ namespace FindingTutor.Models
             }
             return listAcc;
         }
+
         public TeacherModel GetTutorById(int ID)
         {
-            string sql = "select * from Teacher where IdTeacher = "+ID;
+            string sql = "select * from Teacher where IdTeacher = " + ID;
 
-            
             SqlConnection con = db.GetConnection();
             SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
             DataTable dt = new DataTable();
@@ -59,26 +59,27 @@ namespace FindingTutor.Models
             cmd.Dispose();
             con.Close();
 
-            TeacherModel acc= new TeacherModel();;
+            TeacherModel acc = new TeacherModel(); ;
             if (dt.Rows[0]["IdTeacher"] == null)
             {
                 return acc;
             }
-                acc.IdTeacher = Convert.ToInt32(dt.Rows[0]["IdTeacher"].ToString());
-                acc.Email = dt.Rows[0]["Email"].ToString();
-                acc.Password = dt.Rows[0]["Password"].ToString();
-                acc.Name = dt.Rows[0]["Name"].ToString();
-                acc.Phone = Convert.ToDecimal(dt.Rows[0]["Phone"].ToString());
-                acc.Price = Convert.ToDecimal(dt.Rows[0]["Price"].ToString());
-                acc.Avatar = dt.Rows[0]["Avatar"].ToString();
-                acc.Bio = dt.Rows[0]["Bio"].ToString();
+            acc.IdTeacher = Convert.ToInt32(dt.Rows[0]["IdTeacher"].ToString());
+            acc.Email = dt.Rows[0]["Email"].ToString();
+            acc.Password = dt.Rows[0]["Password"].ToString();
+            acc.Name = dt.Rows[0]["Name"].ToString();
+            acc.Phone = dt.Rows[0]["Phone"].ToString();
+            acc.Price = Convert.ToDouble(dt.Rows[0]["Price"].ToString());
+            acc.Avatar = dt.Rows[0]["Avatar"].ToString();
+            acc.Bio = dt.Rows[0]["Bio"].ToString();
 
             return acc;
         }
+
         public bool EditProfile(TeacherModel tutor)
         {
             string sql = "Update Teacher set Name = N'" + tutor.Name + "',Phone = '" + tutor.Phone +
-                "' ,Price = '" + tutor.Price + "',Bio = N'" + tutor.Bio + "' where IdTeacher = " + tutor.IdTeacher;
+                "' ,Price = '" + tutor.Price + "',Bio = N'" + tutor.Bio + "', Avatar = '" + tutor.Avatar + "' where IdTeacher = " + tutor.IdTeacher;
             SqlConnection con = db.GetConnection();
             SqlCommand cmd = new SqlCommand(sql, con);
 
@@ -90,9 +91,10 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
+
         public bool EditPassword(TeacherModel tutor)
         {
-            string sql = "Update Teacher set Password = '" + tutor.Password+ "'  where IdTeacher = " + tutor.IdTeacher ;
+            string sql = "Update Teacher set Password = '" + tutor.Password + "'  where IdTeacher = " + tutor.IdTeacher;
             SqlConnection con = db.GetConnection();
             SqlCommand cmd = new SqlCommand(sql, con);
 
@@ -104,12 +106,13 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
+
         // Đăng ký tài khoản gia sư
         public bool CreateNewAccount(TeacherModel tutor)
         {
             string sql = "insert into Teacher (Email,Password,Name,Phone,Price,Avatar,Bio) " +
-                "Values(N'" + tutor.Email + "',N'" +tutor.Password + "',N'"+ tutor.Name + "' , '" + tutor.Phone+ "' ,'"
-                + tutor.Price + "','" +tutor.Avatar+ "',N'"+ tutor.Bio + "');";
+                "Values(N'" + tutor.Email + "',N'" + tutor.Password + "',N'" + tutor.Name + "' , '" + tutor.Phone + "' ,'"
+                + tutor.Price + "','" + tutor.Avatar + "',N'" + tutor.Bio + "');";
             SqlConnection con = db.GetConnection();
             SqlCommand cmd = new SqlCommand(sql, con);
             con.Open();
@@ -120,10 +123,10 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
+
         // Get list FreeTime
         public List<FreeTimeModel> getFreeTimeOf(int IdTeacher)
         {
-
             string sql = "select * from FreeTime where IdTeacher = " + IdTeacher;
 
             SqlConnection con = db.GetConnection();
@@ -160,6 +163,7 @@ namespace FindingTutor.Models
 
             return list;
         }
+
         public bool DeleteFreeTimeTo(int ID)
         {
             string sql = "Delete from FreeTime where IdTeacher = " + ID;
@@ -174,11 +178,12 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
+
         // Tạo FreeTime
-        public bool CreateFreeTime(int id , int index)
+        public bool CreateFreeTime(int id, int index)
         {
-            string sql = "insert into FreeTime (IdTeacher,TableIndex) " +
-                "Values('" + id + "','" + index + "');";
+            string sql = "insert into FreeTime (IdTeacher,TableIndex,Status) " +
+                "Values('" + id + "','" + index + "',0)";
             SqlConnection con = db.GetConnection();
             SqlCommand cmd = new SqlCommand(sql, con);
             con.Open();
@@ -189,6 +194,7 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
+
         // update status
         public void UpdateStatusFreeTime(int IdTeacher, List<TimeBookingModel> b, int status)
         {
@@ -213,8 +219,8 @@ namespace FindingTutor.Models
             {
                 return;
             }
-
         }
+
         // Get list khóa dạy
         public List<CourseModel> getAllCourse()
         {
@@ -245,6 +251,7 @@ namespace FindingTutor.Models
 
             return list;
         }
+
         // profile
         public List<ProfileModel> getProfileOf(int idTeacher)
         {
@@ -275,6 +282,7 @@ namespace FindingTutor.Models
 
             return list;
         }
+
         public bool DeleteProfileTo(int ID)
         {
             string sql = "Delete from Profile where IdTeacher = " + ID;
@@ -289,7 +297,8 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
-        public bool CreateProfileTo(int id,int courseID)
+
+        public bool CreateProfileTo(int id, int courseID)
         {
             string sql = "insert into Profile (IdTeacher,IdCourse) " +
                 "Values('" + id + "','" + courseID + "');";
@@ -303,10 +312,11 @@ namespace FindingTutor.Models
 
             return result > 0;
         }
+
         // booking
         public List<BookingModel> GetListBookingByIdTeacher(int id)
         {
-            string sql ="select * from Booking where IdTeacher = "+id;
+            string sql = "select * from Booking where IdTeacher = " + id;
             List<BookingModel> list = new List<BookingModel>();
 
             SqlConnection con = db.GetConnection();
@@ -323,15 +333,16 @@ namespace FindingTutor.Models
                 BookingModel p = new BookingModel();
                 p.Id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
                 p.IdStudent = Convert.ToInt32(dt.Rows[i]["IdStudent"].ToString());
-                p.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());                
-                p.DateStart = Convert.ToDateTime(dt.Rows[i]["DateStart"].ToString());
-                p.Status= Convert.ToInt32(dt.Rows[i]["Status"].ToString());
+                p.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());
+                p.DateStart = Convert.ToString(dt.Rows[i]["DateStart"].ToString());
+                p.Status = Convert.ToInt32(dt.Rows[i]["Status"].ToString());
                 p.IdCourse = Convert.ToInt32(dt.Rows[i]["IdCourse"].ToString());
                 list.Add(p);
             }
 
             return list;
         }
+
         public List<BookingModel> GetListBookingByStatus(int status)
         {
             string sql = "select * from Booking where Status = " + status;
@@ -352,7 +363,7 @@ namespace FindingTutor.Models
                 p.Id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
                 p.IdStudent = Convert.ToInt32(dt.Rows[i]["IdStudent"].ToString());
                 p.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());
-                p.DateStart = Convert.ToDateTime(dt.Rows[i]["DateStart"].ToString());
+                p.DateStart = Convert.ToString(dt.Rows[i]["DateStart"].ToString());
                 p.Status = Convert.ToInt32(dt.Rows[i]["Status"].ToString());
                 p.IdCourse = Convert.ToInt32(dt.Rows[i]["IdCourse"].ToString());
                 list.Add(p);
@@ -360,9 +371,14 @@ namespace FindingTutor.Models
 
             return list;
         }
+
         public BookingModel GetListBookingById(int id)
         {
             string sql = "select * from Booking where Id = " + id;
+            if (id == -1)
+            {
+                sql = "select * from Booking";
+            }
             List<BookingModel> list = new List<BookingModel>();
 
             SqlConnection con = db.GetConnection();
@@ -376,11 +392,10 @@ namespace FindingTutor.Models
             BookingModel p = new BookingModel();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                
                 p.Id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
                 p.IdStudent = Convert.ToInt32(dt.Rows[i]["IdStudent"].ToString());
                 p.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());
-                p.DateStart = Convert.ToDateTime(dt.Rows[i]["DateStart"].ToString());
+                p.DateStart = Convert.ToString(dt.Rows[i]["DateStart"].ToString());
                 p.Status = Convert.ToInt32(dt.Rows[i]["Status"].ToString());
                 p.IdCourse = Convert.ToInt32(dt.Rows[i]["IdCourse"].ToString());
                 list.Add(p);
@@ -388,8 +403,9 @@ namespace FindingTutor.Models
 
             return p;
         }
+
         // cập nhập status cho booking
-        public bool UpdateStatusOfBooking(int id,int status, List<TimeBookingModel> listTimeBooking)
+        public bool UpdateStatusOfBooking(int id, int status, List<TimeBookingModel> listTimeBooking)
         {
             string sql = "Update Booking set Status = '" + status + "'  where Id = " + id;
             SqlConnection con = db.GetConnection();
@@ -400,11 +416,11 @@ namespace FindingTutor.Models
 
             cmd.Dispose();
             con.Close();
-            
 
             return result > 0;
         }
-        // 
+
+        //
         // Student
         //
         public StudentModel GetStudentByID(int id)
@@ -424,17 +440,18 @@ namespace FindingTutor.Models
             p.IdStudent = Convert.ToInt32(dt.Rows[0]["IdStudent"].ToString());
             p.Email = dt.Rows[0]["Email"].ToString();
             p.Name = dt.Rows[0]["Name"].ToString();
-            p.Phone = Convert.ToDecimal(dt.Rows[0]["Phone"].ToString());
+            p.Phone = dt.Rows[0]["Phone"].ToString();
             p.Avatar = dt.Rows[0]["Avatar"].ToString();
 
             return p;
         }
+
         // TimeBooking
         //  lấy list timebooking theo id student và id tutor
         public List<TimeBookingModel> GetListTimeBookingById(int idTutor, int idStudent)
         {
             string sql = "select tb.* from TimeBooking tb,Booking b" +
-                "  where tb.IdBooking = b.Id and b.IdTeacher = "+idTutor+" and b.IdStudent = "+ idStudent;
+                "  where tb.IdBooking = b.Id and b.IdTeacher = " + idTutor + " and b.IdStudent = " + idStudent;
             List<TimeBookingModel> list = new List<TimeBookingModel>();
 
             SqlConnection con = db.GetConnection();

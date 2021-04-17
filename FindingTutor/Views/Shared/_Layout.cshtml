@@ -6,13 +6,27 @@
     <link rel="stylesheet" href="~/Content/css/Style.css" />
     <link rel="stylesheet" href="~/Content/css/bootstrap.css" />
     <title>@ViewBag.Title</title>
-    
+
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/Content/Image/icon-home.png" width="100px" height="60px" /></a>
+            @{
+                if (Session["Teacher"] != null)
+                {
+                    <a class="navbar-brand" href="@Url.Action("TutorManagement", "Tutor")"><img src="~/Content/Image/icon.png" width="90px" /></a>
+                }
+                else if (Session["Admin"] != null)
+                {
+                    <a class="navbar-brand" href="@Url.Action("Index", "Admin")"><img src="~/Content/Image/icon.png" width="90px" /></a>
+                }
+                else
+                {
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/Content/Image/icon.png" width="90px" /></a>
+                }
+            }
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,13 +35,38 @@
                 <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a>
+                        @{
+                            if (Session["Teacher"] != null)
+                            {
+                                <a class="nav-link" href="@Url.Action("TutorManagement", "Tutor")">Trang chủ <span class="sr-only">(current)</span></a>
+                            }
+                            else if (Session["Admin"] != null)
+                            {
+                                <a class="nav-link" href="@Url.Action("Index", "Admin")">Trang chủ <span class="sr-only">(current)</span></a>
+                            }
+                            else
+                            {
+                                <a class="nav-link" href="@Url.Action("Index", "Home")">Trang chủ <span class="sr-only">(current)</span></a>
+                            }
+                        }
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                    @{
+                        if (Session["Teacher"] == null && Session["Admin"] == null)
+                        {
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Home/FindTutor">Tìm gia sư</a>
+                            </li>
+                        }
+                    }
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Home/About">Về chúng tôi</a>
                     </li>
 
+                    <li class="nav-item active">
+                        
+                        <a class="nav-link" href="tel:+84397067907"><img src="~/Content/Image/tel.png" style="width: 10%" />0397067907</a>
+                    </li>
                     <div class="nav navbar-nav nav-item dropdown-a ">
                         <li class="dropdown">
                             <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,19 +75,14 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><div class="dropdown-divider"></div></li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </li>
-
                     </div>
-
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -69,8 +103,6 @@
                     <p><a href="#">Giải tích</a></p>
                     <p><a href="#">Đồ thị</a></p>
                     <p><a href="#">Hàm số</a></p>
-                    <p><a href="#">Tư duy</a></p>
-                    <p><a href="#">Đẹp trai</a></p>
                 </div>
                 <div class="col-2 footer-col-link">
                     <h4 class="footer-tittle-col"><strong>Tiếng anh</strong></h4>
@@ -85,17 +117,17 @@
                     <p><a href="#">Nâng cao</a></p>
                 </div>
                 <div class="col-2 footer-col-link">
-                    <h4 class="footer-tittle-col"><strong>Tin</strong></h4>
+                    <h4 class="footer-tittle-col"><strong>Lập trình</strong></h4>
                     <p><a href="#">C/C++</a></p>
                     <p><a href="#">Java</a></p>
                     <p><a href="#">C#</a></p>
-                    <p><a href="#">Kolin</a></p>
-                    <p><a href="#">Rubic</a></p>
+                    <p><a href="#">Kotlin</a></p>
+                    <p><a href="#">Ruby</a></p>
                     <p><a href="#">Javascript</a></p>
                     <p><a href="#">Html/Css</a></p>
-                    <h4 class="footer-tittle-col"><strong>Học nào</strong></h4>
-                    <p><a href="#">Đăng ký</a></p>
-                    <p><a href="#">Đăng nhập</a></p>
+                    <h4 class="footer-tittle-col"><strong>Bắt đầu...</strong></h4>
+                    <p><a href="@Url.Action("UserLogin","Authenticate", new{URL = Request.Url.ToString()})">Đăng ký</a></p>
+                    <p><a href="@Url.Action("UserLogin","Authenticate", new{URL = Request.Url.ToString()})">Đăng nhập</a></p>
                 </div>
                 <div class="col-6 ">
                     <div class="contact">
@@ -103,7 +135,7 @@
                         <p>Email: harley20005@gmail.com <br>hoặc: ducle6487@gmail.com</p>
                         <h4><strong>Kết nối với chúng tôi</strong></h4>
                         <div>
-                            <img class="img-circle" src="~/Content/Image/Facebook-200x200.jpg" width="80px" height="80px">
+                            <img class="img-circle" onclick="location.href='https://www.facebook.com/ducle6487'" src="~/Content/Image/Facebook-200x200.jpg" width="80px" height="80px">
                             <img class="img-circle" src="~/Content/Image/Twitter-1.jpg" width="80px" height="80px">
                             <img class="img-circle" src="~/Content/Image/zalo_sharelogo.png" width="80px" height="80px">
                         </div>

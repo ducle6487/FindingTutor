@@ -10,6 +10,21 @@ namespace FindingTutor.Controllers
 
         public ActionResult UserLogin()
         {
+            if (Session["Teacher"] != null)
+            {
+                return RedirectToAction("TutorManagement","Tutor");
+            }
+
+            if (Session["Student"] != null)
+            {
+                return RedirectToAction("Index","Home");
+            }
+
+            if (Session["Admin"] != null)
+            {
+                return RedirectToAction("Index","Admin");
+            }
+
             return View();
         }
 
@@ -23,7 +38,7 @@ namespace FindingTutor.Controllers
             s.Phone = String.Format("{0}", Request.Form["phone"]);
 
             string valueSelect = String.Format("{0}", Request.Form["type"].ToString());
-            bool r=false;
+            bool r = false;
             if (valueSelect == "teacher")
             {
                 r = true;
@@ -31,9 +46,9 @@ namespace FindingTutor.Controllers
 
             if (accUtils.UnexistEmail(s.Email))
             {
-                if (accUtils.CreateAccount(s,r))
+                if (accUtils.CreateAccount(s, r))
                 {
-                    ViewBag.Success = "Đăng ký thành công.";
+                    ViewBag.Success = "Đăng ký thành công, Đăng nhập ngay.";
                 }
                 else
                 {
@@ -53,23 +68,29 @@ namespace FindingTutor.Controllers
         {
             string email = string.Format("{0}", Request.Form["email"]);
             string password = String.Format("{0}", Request.Form["password"]);
+
+            if (email == "admin@duc.com" && password == "admin123")
+            {
+                Session["Admin"] = "loged";
+                return RedirectToAction("Index", "Admin");
+            }
+
             if (accUtils.checkStudentLogin(email, password) == null)
             {
-                if(accUtils.checkTeacherLogin(email, password) == null)
+                if (accUtils.checkTeacherLogin(email, password) == null)
                 {
-                    
                     ViewBag.Danger = "Đăng nhập thất bại, thử lại.";
                 }
                 else
                 {
                     Session["Teacher"] = accUtils.checkTeacherLogin(email, password);
-                    ViewBag.Success = "Đăng nhập thành công t";
+                    return RedirectToAction("TutorManagement", "Tutor");
                 }
             }
             else
             {
                 Session["Student"] = accUtils.checkStudentLogin(email, password);
-                ViewBag.Success = "Đăng nhập thành công s";
+                return RedirectToAction("Index", "Home");
             }
 
             return View("UserLogin");

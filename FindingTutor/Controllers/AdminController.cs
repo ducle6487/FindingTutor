@@ -11,7 +11,16 @@ namespace FindingTutor.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            if (Session["Admin"] == null)
+            {
+                return RedirectToAction("UserLogin", "Authenticate");
+            }
             return View();
         }
+
+        /*public ActionResult Login()
+        {
+            return View();
+        }*/
     }
 }

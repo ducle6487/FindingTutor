@@ -59,8 +59,6 @@ namespace FindingTutor.Models
             return s;
         }
 
-
-
         public TeacherModel checkTeacherLogin(string email, string pass)
         {
             string hash = hashPassword(pass);
@@ -161,14 +159,52 @@ namespace FindingTutor.Models
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
                 return false;
             }
 
             return true;
         }
 
-        
+        public TeacherModel UpdateTeacherAccount(string email, string pass)
+        {
+            string hash = hashPassword(pass);
+            string sql = "update Teacher set Password = '" + hash + "' where Email = '" + email + "'";
 
+            TeacherModel s = null;
+            SqlConnection con = db.GetConnection();
+            SqlCommand cmd = new SqlCommand(sql, con);
+
+            con.Open();
+            int r = cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+
+            if (r > 0)
+            {
+                sql = "select * from Teacher where Email = '" + email + "'";
+                SqlDataAdapter cmdx = new SqlDataAdapter(sql, con);
+                DataTable dt = new DataTable();
+
+                con.Open();
+                cmdx.Fill(dt);
+                cmdx.Dispose();
+                con.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    s = new TeacherModel();
+                    s.IdTeacher = Convert.ToInt32(dt.Rows[0]["IdTeacher"].ToString());
+                    s.Email = dt.Rows[0]["Email"].ToString();
+                    s.Password = dt.Rows[0]["Password"].ToString();
+                    s.Name = dt.Rows[0]["Name"].ToString();
+                    s.Phone = dt.Rows[0]["Phone"].ToString();
+                    s.Avatar = dt.Rows[0]["Avatar"].ToString();
+                    s.Price = Convert.ToDouble(dt.Rows[0]["Price"].ToString());
+                    s.Bio = dt.Rows[0]["Bio"].ToString();
+                }
+            }
+
+            return s;
+        }
     }
 }

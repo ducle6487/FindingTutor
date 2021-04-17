@@ -1,10 +1,10 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
+
 }
 @using FindingTutor.Models
 
-@{ 
+@{
     DbContext dbC = new DbContext();
     List<BookingModel> listBooking = dbC.GetListBookingByStatus(1);
 }
@@ -12,7 +12,7 @@
     <div class="card form-request shadow-lg">
         <div class=" request-management">
             <div>
-                <h2 class="text-center">Duyệt yêu cầu</h2>
+                <h2 class="text-center">Thông tin yêu cầu</h2>
             </div>
             <table class="table table-request-management">
                 <thread>
@@ -21,27 +21,32 @@
                         <th>Học sinh</th>
                         <th>Khóa học</th>
                         <th>Ngày bắt đầu</th>
-                        <th>Chấp nhận</th>
-                        <th>Từ chối</th>
+                        <th>Trạng thái</th>
                     </tr>
                 </thread>
                 <tbody>
                     @foreach (var booking in listBooking)
                     {
-                    <tr>
-                        <td>@dbC.GetTutorById(booking.IdTeacher).Name</td>
-                        <td>@dbC.GetStudentByID(booking.IdStudent).Name</td>
-                        <td>@dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameSubject - @dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameGrade</td>
-                        <td>@booking.DateStart.ToString("MM/dd/yyyy")</td>
-                        <td><a class="btn btn-success">ok</a></td>
-                        <td><a class="btn btn-danger">ko</a></td>
-                    </tr>
+                        string status = "Đang chờ";
+
+                        if (@booking.Status == -1)
+                        {
+                            status = "Đã hủy";
+                        }else if (@booking.Status == 1)
+                        {
+                            status = "Đã chấp nhận";
+                        }
+
+                        <tr>
+                            <td>@dbC.GetTutorById(booking.IdTeacher).Name</td>
+                            <td>@dbC.GetStudentByID(booking.IdStudent).Name</td>
+                            <td>@dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameSubject - @dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameGrade</td>
+                            <td>@booking.DateStart</td>
+                            <td>@status</td>
+                        </tr>
                     }
-                    
-                    
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-

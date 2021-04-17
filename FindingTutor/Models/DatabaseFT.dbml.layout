@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 8.5" name="DatabaseFT">
+  <DataContextMoniker Name="/DatabaseFTDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3a362a7a-1775-4fc8-84bc-5178d4e0628f" absoluteBounds="4, 1, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Booking" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e18275c5-80b8-4b2c-996e-29a7ee425248" absoluteBounds="4.015, 1.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="17ac5457-d057-4d0c-9251-7946e6da1d24" absoluteBounds="6.625, 2, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Course" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c488afde-393b-4b49-8837-1b7e3f700d57" absoluteBounds="6.64, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cba81d2e-817f-4d72-bf9f-52c568cb8317" absoluteBounds="9.75, 1, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DatabaseFTDataContext/FreeTime" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c27b2358-19fd-4828-9d1e-e8a23d1870ef" absoluteBounds="9.765, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="82318523-b20e-4286-ab90-011cac1880f2" absoluteBounds="6.625, 0.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Grade" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da3cab94-d3d2-463e-b4e4-efd5034a94b3" absoluteBounds="6.64, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.625 : 1.69399251302083); (7.625 : 2)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Grade/Grade_Course" />
+      <nodes>
+        <classShapeMoniker Id="82318523-b20e-4286-ab90-011cac1880f2" />
+        <classShapeMoniker Id="17ac5457-d057-4d0c-9251-7946e6da1d24" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6d366e99-c61b-4fdb-81eb-1ce5f06fbf81" absoluteBounds="1.125, 0.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Message" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f59b767c-bcaf-439d-813e-b90d727f7e0f" absoluteBounds="1.1400000000000001, 1.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fa72d4da-acec-4cd8-a506-09a5af93c8bd" absoluteBounds="2.875, 3.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Profile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a12a4ba5-3822-4637-80f4-ed51e466ee91" absoluteBounds="2.8899999999999997, 3.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.031252 : 3.3862939453125); (8.031252 : 3.5625); (6.0625 : 3.5625); (6.0625 : 4.06814697265625); (5.91958333333333 : 4.06814697265625 : JumpStart); (5.75291666666667 : 4.06814697265625 : JumpEnd); (4.875 : 4.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Course/Course_Profile" />
+      <nodes>
+        <classShapeMoniker Id="17ac5457-d057-4d0c-9251-7946e6da1d24" />
+        <classShapeMoniker Id="fa72d4da-acec-4cd8-a506-09a5af93c8bd" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c06dd104-50bb-4eda-a4b9-6be0b0311dec" absoluteBounds="0.5, 2.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Qualification" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3feaa27d-349f-4cad-8035-5dce82ff44e2" absoluteBounds="0.51499999999999968, 3.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cddce11c-3e17-40eb-95fb-23cd35de4038" absoluteBounds="9.375, 3.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Student" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b2d6ea92-3b88-4410-afeb-697c5a0f5432" absoluteBounds="9.39, 3.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.375 : 5.26849609375); (5.83625 : 5.26849609375); (5.83625 : 2.9631982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Student/Student_Booking" />
+      <nodes>
+        <classShapeMoniker Id="cddce11c-3e17-40eb-95fb-23cd35de4038" />
+        <classShapeMoniker Id="3a362a7a-1775-4fc8-84bc-5178d4e0628f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="48917475-ef8d-483d-ba46-ee194a7b8491" absoluteBounds="6.125, 3.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Subject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d4a5e30f-d2bb-45c4-b43f-7ce3d7a05e13" absoluteBounds="6.14, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.375 : 3.625); (7.375 : 3.3862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Subject/Subject_Course" />
+      <nodes>
+        <classShapeMoniker Id="48917475-ef8d-483d-ba46-ee194a7b8491" />
+        <classShapeMoniker Id="17ac5457-d057-4d0c-9251-7946e6da1d24" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d0a64827-9778-4445-a36c-c676a0b3104b" absoluteBounds="3.625, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DatabaseFTDataContext/Teacher" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1557c217-ed9c-4927-888c-3f4e294de3bf" absoluteBounds="3.64, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.625 : 1); (4.625 : 0.75); (5 : 0.75); (5 : 1)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Teacher/Teacher_Booking" />
+      <nodes>
+        <classShapeMoniker Id="d0a64827-9778-4445-a36c-c676a0b3104b" />
+        <classShapeMoniker Id="3a362a7a-1775-4fc8-84bc-5178d4e0628f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.625 : 1); (6 : 0.625); (9.375 : 0.625); (9.75 : 1)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Teacher/Teacher_FreeTime" />
+      <nodes>
+        <classShapeMoniker Id="d0a64827-9778-4445-a36c-c676a0b3104b" />
+        <classShapeMoniker Id="cba81d2e-817f-4d72-bf9f-52c568cb8317" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.25 : 3.34780110677083); (4.25 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Teacher/Teacher_Profile" />
+      <nodes>
+        <classShapeMoniker Id="d0a64827-9778-4445-a36c-c676a0b3104b" />
+        <classShapeMoniker Id="fa72d4da-acec-4cd8-a506-09a5af93c8bd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.625 : 2.98640055338542); (2.5 : 2.98640055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Teacher/Teacher_Qualification" />
+      <nodes>
+        <classShapeMoniker Id="d0a64827-9778-4445-a36c-c676a0b3104b" />
+        <classShapeMoniker Id="c06dd104-50bb-4eda-a4b9-6be0b0311dec" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a05e1b41-3d54-4b69-a1b5-140d4f792391" absoluteBounds="8.75, 3.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DatabaseFTDataContext/TimeBooking" />
+      <nestedChildShapes>
+        <elementListCompartment Id="416043a4-67be-4135-9fa8-71e48f50685f" absoluteBounds="8.765, 3.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6 : 1.98159912109375); (6.5625 : 1.98159912109375); (6.5625 : 3.4487939453125); (8.6875 : 3.4487939453125); (8.6875 : 3.3125); (9.75 : 3.3125); (9.75 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DatabaseFTDataContext/Booking/Booking_TimeBooking" />
+      <nodes>
+        <classShapeMoniker Id="3a362a7a-1775-4fc8-84bc-5178d4e0628f" />
+        <classShapeMoniker Id="a05e1b41-3d54-4b69-a1b5-140d4f792391" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

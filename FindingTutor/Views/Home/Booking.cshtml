@@ -1,6 +1,6 @@
 ﻿@using FindingTutor.Models
 @{
-    Layout = null;
+    Layout = "../Shared/_Layout.cshtml";
 }
 
 <!doctype html>
@@ -796,7 +796,7 @@ Phải có ít nhất 50 ký tự.
                     <br />
                     <input id="password" class="form-control" name="password1" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
                     <br />
-                    <input type="submit" class="btn btn-danger" formaction="@Url.Action("RegisterSubmit", "Home", new {IdTeacher = ViewBag.IdTeacher})" value="Submit Request" />
+                    <input type="submit" class="btn btn-danger" formaction="@Url.Action("RegisterSubmit", "Home", new {IdTeacher = ViewBag.IdTeacher})" value="Gửi yêu cầu" />
                 </div>
             </div>
 
@@ -808,7 +808,7 @@ Phải có ít nhất 50 ký tự.
                     <br />
                     <input id="password1" value="sssssadasd" class="form-control" name="password2" type="password" placeholder="Password" pattern=".{6,18}" title="Mật khẩu phải có ít nhất 6 ký tự đến 18 ký tự" required />
                     <br />
-                    <input type="submit" class="btn btn-danger" formaction="@Url.Action("LoginSubmit", "Home", new {IdTeacher = ViewBag.IdTeacher})" value="Submit Request" />
+                    <input type="submit" class="btn btn-danger" formaction="@Url.Action("LoginSubmit", "Home", new {IdTeacher = ViewBag.IdTeacher})" value="Gửi yêu cầu" />
                 </div>
             </div>
         }

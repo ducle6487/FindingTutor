@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace FindingTutor.Models
 {
@@ -13,7 +11,6 @@ namespace FindingTutor.Models
         public int IdTeacher { get; set; }
         public int Index { get; set; }
         public int Status { get; set; }
-
     }
 
     public class FreeTimeUtils
@@ -48,12 +45,10 @@ namespace FindingTutor.Models
             {
                 return;
             }
-            
         }
 
         public List<FreeTimeModel> getFreeTimeOf(int IdTeacher)
         {
-
             string sql = "select * from FreeTime where IdTeacher = " + IdTeacher;
 
             SqlConnection con = db.GetConnection();
@@ -83,13 +78,12 @@ namespace FindingTutor.Models
                     {
                         f.Status = 0;
                     }
-                    
+
                     list.Add(f);
                 }
             }
 
             return list;
-
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
+﻿using FindingTutor.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using FindingTutor.Models;
 
 namespace FindingTutor.Controllers
 {
@@ -12,19 +9,19 @@ namespace FindingTutor.Controllers
     {
         private AccountUtils accUtils = new AccountUtils();
 
-        public ActionResult Booking()
+        public ActionResult Booking(int idTeacher)
         {
             ProfileUtils profileUtils = new ProfileUtils();
 
-            List<ProfileModel> listCourse = profileUtils.getProfileOf(1);
+            List<ProfileModel> listCourse = profileUtils.getProfileOf(idTeacher);
 
             FreeTimeUtils f = new FreeTimeUtils();
 
-            List<FreeTimeModel> list = f.getFreeTimeOf(1);
+            List<FreeTimeModel> list = f.getFreeTimeOf(idTeacher);
 
             ViewBag.ListAllCourse = listCourse;
             ViewBag.ListFreeTime = list;
-            ViewBag.IdTeacher = 1;
+            ViewBag.IdTeacher = idTeacher;
             return View();
         }
 
@@ -66,17 +63,29 @@ namespace FindingTutor.Controllers
                     }
                 }
 
-                f.UpdateStatus(IdTeacher, btList, 1);
-                BookingUtils bku = new BookingUtils();
-                BookingModel bookingModel = new BookingModel();
-                bookingModel.IdStudent = s.IdStudent;
-                bookingModel.IdTeacher = IdTeacher;
-                bookingModel.DateStart = ViewBag.datestart;
-                bookingModel.IdCourse = Convert.ToInt32(ViewBag.khoahoc);
-                bool r = bku.AddBookingRequest(bookingModel, btList);
+                if (btList.Count > 0)
+                {
+                    f.UpdateStatus(IdTeacher, btList, 1);
+                    BookingUtils bku = new BookingUtils();
+                    BookingModel bookingModel = new BookingModel();
+                    bookingModel.IdStudent = s.IdStudent;
+                    bookingModel.IdTeacher = IdTeacher;
+                    bookingModel.DateStart = ViewBag.datestart;
+                    bookingModel.IdCourse = Convert.ToInt32(ViewBag.khoahoc);
+                    bool r = bku.AddBookingRequest(bookingModel, btList);
 
-                Session["Student"] = s;
-                return Content(r.ToString());
+                    Session["Student"] = s;
+                    ViewBag.message = "Yêu cầu của bạn đã được gửi đi";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Danger = "Phải chọn ít nhất 1 giờ học";
+                    Session["Student"] = s;
+                    ViewBag.ListAllCourse = listCourse;
+                    ViewBag.ListFreeTime = list;
+                    return View("Booking");
+                }
             }
 
             ViewBag.Danger = "Đăng nhập tài khoản thất bại, thử lại.";
@@ -133,17 +142,29 @@ namespace FindingTutor.Controllers
                             }
                         }
 
-                        f.UpdateStatus(IdTeacher, btList, 1);
-                        BookingUtils bku = new BookingUtils();
-                        BookingModel bookingModel = new BookingModel();
-                        bookingModel.IdStudent = s.IdStudent;
-                        bookingModel.IdTeacher = IdTeacher;
-                        bookingModel.DateStart = ViewBag.datestart;
-                        bookingModel.IdCourse = Convert.ToInt32(ViewBag.khoahoc);
-                        bool r = bku.AddBookingRequest(bookingModel, btList);
+                        if (btList.Count > 0)
+                        {
+                            f.UpdateStatus(IdTeacher, btList, 1);
+                            BookingUtils bku = new BookingUtils();
+                            BookingModel bookingModel = new BookingModel();
+                            bookingModel.IdStudent = s.IdStudent;
+                            bookingModel.IdTeacher = IdTeacher;
+                            bookingModel.DateStart = ViewBag.datestart;
+                            bookingModel.IdCourse = Convert.ToInt32(ViewBag.khoahoc);
+                            bool r = bku.AddBookingRequest(bookingModel, btList);
 
-                        Session["Student"] = s;
-                        return Content(r.ToString());
+                            Session["Student"] = s;
+                            ViewBag.message = "Yêu cầu của bạn đã được gửi đi";
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            Session["Student"] = s;
+                            ViewBag.ListAllCourse = listCourse;
+                            ViewBag.ListFreeTime = list;
+                            ViewBag.message = "Phải chọn ít nhất 1 giờ học";
+                            return View("Booking");
+                        }
                     }
                 }
                 else
@@ -197,17 +218,28 @@ namespace FindingTutor.Controllers
                     }
                 }
 
-                f.UpdateStatus(IdTeacher, btList, 1);
-                BookingUtils bku = new BookingUtils();
-                BookingModel bookingModel = new BookingModel();
-                bookingModel.IdStudent = s.IdStudent;
-                bookingModel.IdTeacher = IdTeacher;
-                bookingModel.DateStart = ViewBag.datestart;
-                bookingModel.IdCourse = Convert.ToInt32(ViewBag.khoahoc);
-                bool r = bku.AddBookingRequest(bookingModel, btList);
-
-                Session["Student"] = s;
-                return Content(r.ToString());
+                if (btList.Count > 0)
+                {
+                    f.UpdateStatus(IdTeacher, btList, 1);
+                    BookingUtils bku = new BookingUtils();
+                    BookingModel bookingModel = new BookingModel();
+                    bookingModel.IdStudent = s.IdStudent;
+                    bookingModel.IdTeacher = IdTeacher;
+                    bookingModel.DateStart = ViewBag.datestart;
+                    bookingModel.IdCourse = Convert.ToInt32(ViewBag.khoahoc);
+                    bool r = bku.AddBookingRequest(bookingModel, btList);
+                    ViewBag.message = "Yêu cầu của bạn đã được gửi đi";
+                    Session["Student"] = s;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    Session["Student"] = s;
+                    ViewBag.ListAllCourse = listCourse;
+                    ViewBag.ListFreeTime = list;
+                    ViewBag.message = "Phải chọn ít nhất 1 giờ học";
+                    return View("Booking");
+                }
             }
             ViewBag.ListAllCourse = listCourse;
             ViewBag.ListFreeTime = list;
@@ -244,7 +276,6 @@ namespace FindingTutor.Controllers
 
         public ActionResult FindTutor()
         {
-
             CourseUtils courseUtils = new CourseUtils();
 
             ViewBag.ListCourse = courseUtils.getAllCourse();
@@ -259,7 +290,6 @@ namespace FindingTutor.Controllers
         [HttpPost, ActionName("FindTutor")]
         public ActionResult FindTutorResult()
         {
-
             CourseUtils courseUtils = new CourseUtils();
 
             ViewBag.ListCourse = courseUtils.getAllCourse();
@@ -276,9 +306,31 @@ namespace FindingTutor.Controllers
             }
 
             TeacherInfoUtils teacherInfoUtils = new TeacherInfoUtils();
-            List<TeacherInfoModel> list = teacherInfoUtils.getTeacherInfoFor(Convert.ToInt32(idCourse));
+
+            List<TeacherInfoModel> list = teacherInfoUtils.getAllTeacherInfo();
+            if (idCourse != "0")
+            {
+                list = teacherInfoUtils.getTeacherInfoFor(Convert.ToInt32(idCourse));
+            }
             ViewBag.CountTeacher = list.Count;
             ViewBag.ListInfo = list;
+            ViewBag.IdCourse = idCourse;
+            return View();
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
 
             return View();
         }

@@ -11,17 +11,18 @@
     <!-- fm header -->
     <div class="row text-center pm-header">
         <div class="col-4 margin-auto">
-            <img class="img-avatar img-circle shadow" src="~/@Model.Avatar" width="100%" height="100%">
+            <img class="img-avatar img-circle shadow" src="~/Content/Image/@Model.Avatar" width="100%" height="100%">
         </div>
         <div class="col-8 text-center">
             <h2 class=""><strong>@Model.Name</strong></h2>
-            <p>- @Model.Phone -</p>
-            <p class="float-left pm-price">Giá: @Model.Price.ToString("C3")/h</p>
+            <p>@Model.Email</p>
+            <p>0@(Model.Phone)</p>
+            <p class="float-left pm-price">Giá: @(Model.Price)đ/giờ</p>
             <!--  -->
             <nav class="navbar navbar-expand-lg navbar-light float-right">
 
-                <a class="navbar-brand" href="@Url.Action("EditProfile", "Tutor")">edit profile </a>
-                <a class="navbar-brand" href="@Url.Action("EditPassword", "Tutor")">Đổi passwork</a>
+                <a class="navbar-brand" href="@Url.Action("EditProfile", "Tutor")">Cập nhật thông tin </a>
+                <a class="navbar-brand" href="@Url.Action("EditPassword", "Tutor")">Đổi mật khẩu</a>
             </nav>
             <!--  -->
         </div>
@@ -46,19 +47,18 @@
                 <tbody>
                     @foreach (var booking in listBooking)
                     {
-                        if (booking.Status == 0 )
+                        if (booking.Status == 0)
                         {
                             <tr>
                                 <td>@dbC.GetStudentByID(booking.IdStudent).Name</td>
                                 <td>@dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameSubject - @dbC.getAllCourse().SingleOrDefault(n => n.IdCourse == booking.IdCourse).NameGrade</td>
-                                <td>@booking.DateStart.ToString("MM/dd/yyyy")</td>
+                                <td>@booking.DateStart</td>
                                 <td><a class="btn btn-success" href="@Url.Action("AcceptRequest","Tutor",new {id = booking.Id})">Chấp nhận</a></td>
                                 <td><a class="btn btn-danger" href="@Url.Action("RefuseRequest","Tutor",new {id = booking.Id,idTutor = booking.IdTeacher, idStudent=booking.IdStudent  })">Từ chối</a></td>
                             </tr>
                         }
-                        
-                    }
 
+                    }
                 </tbody>
             </table>
         </div>
@@ -113,16 +113,12 @@
                                     </tr>
                                 }
                             }
-
-
                         </table>
                     </div>
-
                 </div>
                 <div class="pm-time-btn text-center text-light"><input class="btn btn-success" value="Cập Nhật" type="submit" /></div>
             }
         </div>
-
     </div>
     <!--  -->
     <!-- Subject -->
@@ -159,7 +155,6 @@
                             }
                         </tr>
                     }
-
                 </tbody>
             </table>
             <div class="text-center"><input class="btn btn-success" value="Cập nhật" type="submit"></div>
@@ -177,6 +172,4 @@
             </p>
         </div>
     </div>
-
 </div>
-
