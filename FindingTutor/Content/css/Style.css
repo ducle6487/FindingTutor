@@ -1,0 +1,391 @@
+﻿.background-body {
+    background-image: url('../Image/background.jpg');
+    background-size: 100% auto;
+    background-attachment: fixed;
+}
+
+.intro-home {
+    background-color: #000000;
+}
+
+    .intro-home h1 {
+        color: #000000;
+        padding-bottom: 50px;
+    }
+
+.introl-home p {
+    color: #757272;
+}
+
+div.intro-home {
+    opacity: 0.9;
+}
+
+.home-intro-2 {
+    background-color: #f3feff;
+    padding-top: 30px;
+}
+
+    .home-intro-2 h4 {
+        color: #232f49;
+        font-size: 42px;
+        opacity: 1;
+    }
+
+        .home-intro-2 h4 span {
+            color: #4cbcc2;
+        }
+
+    .home-intro-2 p {
+        color: #767676;
+        opacity: 1;
+    }
+
+.home-intro-3 {
+    background-color: #d8f8fa;
+    opacity: 0.9;
+    margin-top: 50px;
+    padding: 50px 30px;
+}
+
+    .home-intro-3 div h1 {
+        color: #232f49;
+        font-size: 40px;
+    }
+
+    .home-intro-3 div p {
+        color: #545454;
+        font-size: 25px;
+    }
+
+        .home-intro-3 div p span {
+            color: #4cbbc2;
+        }
+
+.Maxim {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-size: 80px;
+    color: #ca0258;
+}
+
+.review-home {
+    text-decoration: none;
+}
+
+    .review-home :hover {
+        text-decoration: none;
+        color: #443f3f;
+    }
+
+    .review-home a h5 {
+        font-size: 30px;
+        color: #2a2424;
+        padding-top: 50px;
+    }
+
+    .review-home h6 {
+        color: #3c3434;
+        font-size: 28px;
+    }
+
+        .review-home h6 span {
+            color: #4cbbc2;
+            font-size: 28px;
+        }
+
+    .review-home a img {
+        border-radius: 50%;
+        margin-top: 30px;
+        height: 120px;
+        min-height: 120px;
+        max-height: 120px;
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+    }
+
+    .review-home a p {
+        font-size: 24px;
+        color: #3c3434;
+        margin: 70px 20px;
+        text-align: center;
+    }
+/* ==============Profile Teacher============= */
+.bg-ebeff2 {
+    background-color: #ebeff2;
+}
+
+.profile {
+    position: relative;
+    margin-top: 50px;
+}
+
+.profile-card {
+    position: fixed;
+    border-radius: 1%;
+    text-align: center;
+}
+
+.profile-head {
+    margin-top: 30px;
+}
+
+.profile-text {
+    font-size: 17px;
+}
+
+.profile-box {
+    background-color: #ebebeb;
+    max-height: 115px;
+    min-height: 115px;
+    max-width: 130px;
+    min-width: 130px;
+}
+
+.profile-btn {
+    width: 320px;
+    height: 60px;
+    border-radius: 2%;
+    border: 1px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.teach-img {
+    border-radius: 50%;
+    height: 180px;
+    min-height: 180px;
+    max-height: 180px;
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+}
+
+.head-review {
+    background-color: #17073f;
+    color: white;
+    padding: 10px 30px;
+}
+
+.profile-intro {
+    padding: 30px 40px;
+    margin-top: 40px;
+    color: #232f49;
+}
+
+    .profile-intro p {
+        margin: 20px 50px;
+    }
+
+    .profile-intro ul {
+        margin: 20px 50px;
+    }
+
+.profile-review {
+    margin: 50px 50px;
+}
+
+.review-time {
+    color: rgb(175, 175, 175);
+    font-size: 18px;
+}
+/* ============Edit Profile============= */
+
+.edit-form {
+    margin: 50px auto;
+}
+/* ==============Profile Management============ */
+.pm-header {
+    padding: 20px 20px;
+    background-image: url('../Image/hinh-anh-background-o-mat-cao.jpg');
+}
+
+    .pm-header h2 {
+        margin-top: 20px;
+    }
+
+.form-request {
+    margin: 30px 0px;
+}
+
+.request-management {
+    margin: 40px 30px;
+}
+
+.table-request-management {
+    margin-top: 20px;
+}
+
+.border-tick-time {
+    height: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    width: 55px;
+    min-width: 55px;
+    max-width: 55px;
+    margin: 1px;
+    padding: 1px;
+    border: black 1px solid;
+}
+
+.pm-time {
+    margin: 40px 0px;
+}
+
+.pm-time-header {
+    margin: 30px 0px;
+}
+
+.lich {
+    margin: 30px 0px;
+    font-size: 18px;
+}
+
+.pm-time-btn {
+    margin: 50px auto;
+}
+
+.pm-bio {
+    margin: 30px 0px;
+}
+
+.pm-bio-header {
+    margin: 30px 0px;
+}
+
+.pm-bio-body {
+    padding: 20px 50px;
+}
+
+    .pm-bio-body p {
+        margin: 10px 30px;
+    }
+
+.pm-price {
+    font-weight: bold;
+    color: #d60e18;
+}
+.pm-subject {
+    padding: 70px 60px;
+}
+/* ====================BOX================= */
+.box-230 {
+    height: 230px;
+    min-height: 230px;
+    max-height: 230px;
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+}
+
+.box-200h {
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
+}
+
+.box-735w {
+    width: 735px;
+    min-width: 735px;
+    max-width: 735px;
+}
+
+.box-320-800 {
+    height: 720px;
+    min-height: 720px;
+    max-height: 720px;
+    width: 320px;
+    min-width: 320px;
+    max-width: 320px;
+}
+
+.box-370-570 {
+    height: 570px;
+    min-height: 570px;
+    max-height: 570px;
+    width: 370px;
+    min-width: 370px;
+    max-width: 370px;
+}
+/* ----------image------------ */
+.img-circle {
+    border-radius: 50%;
+}
+
+.img-comment {
+    height: 60px;
+    min-height: 60px;
+    max-height: 60px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+}
+
+.img-avatar {
+    height: 230px;
+    min-height: 230px;
+    max-height: 230px;
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+}
+
+.margin-auto {
+    margin: 0px auto;
+}
+/* ==========footer============= */
+.footer-bg{
+    background-color: #232f49;
+    color:#ebebeb;
+    padding-top:30px;
+    padding-bottom: 30px;
+}
+.footer-tittle-col{
+    font-size: 34px;
+    margin-bottom:25px;
+    margin-top:20px;
+}
+.footer-col-link p {
+    margin-bottom: 10px;
+
+}
+.footer-col-link p a{
+    color:#12d4d2;
+    font-size: 24px;
+    text-decoration: none;
+}
+.footer-col-link p a:hover{
+    color:#0eb3b0;
+    font-size: 24px;
+    text-decoration: none;
+}
+.contact{
+    margin: 20px 40px;
+}
+.copyright{
+    margin: 20px 40px;
+}
+/* ===========About============ */
+.about{
+    margin-top:70px;
+    margin-bottom:70px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.about h1{
+    font-size: 40px;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+.about ul{
+    margin-top:10px;
+    margin-bottom:30px;
+}
+.about ul li{
+    margin-top:10px;
+}
+.about-img{
+    margin-top:30px;
+    margin-bottom:10px;
+}

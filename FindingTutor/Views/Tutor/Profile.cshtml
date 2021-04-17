@@ -1,0 +1,151 @@
+﻿@model FindingTutor.Models.TeacherModel
+@using FindingTutor.Models
+@{
+    ViewBag.Title = "Profile";
+}
+<div class="container-fluid bg-ebeff2 shadow-lg">
+    <div class="row justify-content-between">
+        <div class="col-3 profile ">
+            <div class="box-370-570 shadow profile-card bg-white">
+                <div class="card-title profile-head ">
+                    <img class="teach-img" src="~/@Model.Avatar" width="100%" height="100%">
+                </div>
+                <div class="card-body row justify-content-around ">
+                    <div class="col-5 profile-box">
+                        <img class="glyphicon glyphicon-time">
+                        <p class="profile-text"><strong>1336+ hrs taught</strong></p>
+                    </div>
+                    <div class="col-5 profile-box ">
+                        <img class="glyphicon glyphicon-pencil">
+                        <p class="profile-text"><strong>@Model.Price</strong></p>
+                    </div>
+                </div>
+                <div class="card-footer" style="background-color: #ffffff;border:none">
+                    <input class="profile-btn bg-success text-light" type="submit" value="Request Lesson">
+                    <input class="profile-btn" type="submit" value="Contact me">
+                </div>
+            </div>
+        </div>
+        <!-- Profile Card -->
+        <!-- Profile Review -->
+        <div class="col-9 container">
+            <div class="head-review text-center">
+                <h2>
+                    <strong>@Model.Name</strong><h2>
+                        <h4>@Model.Phone</h4>
+                        <h4>@Model.Price VND/ Giờ</h4>
+            </div>
+            <!-- Bio -->
+            <div class="card shadow profile-intro">
+                <h3><strong>Tiểu sử</strong></h3>
+                <h6><strong>Passionate French/ Spanish/ Persian qualified teacher</strong></h6>
+                <p>
+                    @Model.Bio
+                </p>
+            </div>
+            <!-- Review -->
+            <div class="card shadow profile-intro">
+                <h3><strong>My Review</strong></h3>
+                <div class="profile-review">
+                    <div class="row justify-content-between ">
+                        <div class="col-2 text-center">
+                            <img src="~/Content/Image/avatar/avatar-anime-đeo-kính.jpg" class="img-circle img-comment" width="100%" height="100%">
+                            <p>Sang Pham</p>
+                        </div>
+                        <div class="col-10">
+                            <div>
+                                <p>
+                                    Các bài học được tổ chức rất tốt, tận tâm và chạy tốt. Con trai tôi hoàn toàn yêu thương
+                                    Các buổi học tiếng Pháp khiến Parissa trở nên thông minh hơn và anh ấy thực sự bắt đầu hiểu tiếng Pháp và tự tin hơn.
+                                    Tôi chắc chắn rằng kết quả của cậu ấy cũng sẽ được cải thiện trong trường. Cảm ơn bạn....
+                                </p>
+                            </div>
+                            <div class="float-right"><p class="review-time">15-1-2021</p></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row justify-content-between ">
+                        <div class="col-2 text-center">
+                            <img src="~/Content/Image/avatar/top-100-buc-anh-anime-lam-avatar-chat-nhat-qua-dat.jpg" class="img-circle img-comment" width="100%" height="100%">
+                            <p>Anh Duc</p>
+                        </div>
+                        <div class="col-10">
+                            <div>
+                                <p>
+                                    Very well organised, dedicated and well run lessons. My son is absolutely loving his
+                                    French sessions wity Parissa and he is really getting to grips with French now and is more confident.
+                                    I am sure his results will be improved in the school as well. Thank you....
+                                </p>
+                            </div>
+                            <div class="float-right"><p class="review-time">12-2-2021</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Subject -->
+            @{  DbContext dbC = new DbContext();
+                List<ProfileModel> listProf = dbC.getProfileOf(Model.IdTeacher); }
+            <div class="card shadow profile-intro">
+                <h3><strong>My Subject</strong></h3>
+                <h5>I teach the following subjects:</h5>
+                <ul>
+                    @foreach (var prof in listProf)
+                    {
+                        <li>@prof.NameSubject : @prof.NameGrade</li>
+                    }
+                </ul>
+            </div>
+            @*                        Freetime*@
+            @{
+                List<FreeTimeModel> listFT = dbC.getFreeTimeOf(Model.IdTeacher); }
+                <div class="card shadow profile-intro">
+                    <h3><strong>Thời gian có thể đăng ký</strong></h3>
+                    <div class="profile-review">
+                        <div class="row justify-content-around lich">
+                            <div class="col-5">
+                                <table class="text-center ">
+                                    <tr>
+                                        <th class="border-tick-time"></th>
+                                        <th class="border-tick-time">Mon</th>
+                                        <th class="border-tick-time">Tue</th>
+                                        <th class="border-tick-time">Wed</th>
+                                        <th class="border-tick-time">Thu</th>
+                                        <th class="border-tick-time">Fri</th>
+                                        <th class="border-tick-time">Sat</th>
+                                        <th class="border-tick-time">Sun</th>
+                                    </tr>
+                                    @{
+                                        int index = 1;
+                                        for (int r = 6; r < 23; r++)
+                                        {
+                                            <tr>
+                                                <th class="border-tick-time">@r h</th>
+                                                @for (int j = 0; j < 7; j++)
+                                                {
+                                                    if (listFT.SingleOrDefault(n => n.Index == index) != null)
+                                                    {
+                                                        <td class="border-tick-time">
+                                                            <input class="checkbox" type="checkbox" name="@index" checked disabled/>
+                                                            @{ index++;}
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="border-tick-time">
+                                                            <input class="checkbox" type="checkbox" name="@index" disabled/>
+                                                            @{ index++;}
+                                                        </td>
+
+                                                    }
+                                                }
+                                            </tr>
+                                        }
+                                    }
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

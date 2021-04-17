@@ -1,0 +1,42 @@
+﻿@model FindingTutor.Models.TeacherModel
+@{
+    ViewBag.Title = "EditProfile";
+}
+<div class="container bg-light">
+    <div class="text-center">
+        <h1>Sửa thông tin cá nhân của @Model.Name</h1>
+        <h2>@ViewBag.Mess</h2>
+    </div>
+    <div class="row">
+        <!-- Edit profile -->
+        <div class="col-12">
+            <div class="box-735w edit-form">
+                @using (Html.BeginForm("EditProfile", "Tutor", FormMethod.Post,new { @class= "form-horizontal" }))
+                {
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Tên</label>
+                        <input type="text" class="form-control" value="@Model.Name" name="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Điện thoại</label>
+                        <input type="text" class="form-control" value="@Model.Phone" name="Phone">
+                    </div>  
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Giá</label>
+                        <input type="text" class="form-control" value="@Model.Price" name="Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Tiểu sử</label>
+                        <textarea rows="9" class="form-control" name="Bio">
+                                @Model.Bio
+                        </textarea>
+                    </div>
+                    <input class="btn btn-success " type="submit" value="edit">
+                }
+            </div>
+        </div>
+        <!-- /edit profile -->
+
+    </div>
+
+</div>

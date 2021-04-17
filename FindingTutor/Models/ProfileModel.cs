@@ -9,7 +9,6 @@ namespace FindingTutor.Models
 {
     public class ProfileModel
     {
-
         public int IdProfile { get; set; }
         public int IdTeacher { get; set; }
         public int IdCourse { get; set; }

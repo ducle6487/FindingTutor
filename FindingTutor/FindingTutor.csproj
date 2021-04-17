@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TutorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,10 +141,16 @@
     <Compile Include="Models\TeacherInfoModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\TutorFinding.designer.cs">
+    <Compile Include="Models\DbContext.cs" />
+    <Compile Include="Models\MyData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TutorFinding.dbml</DependentUpon>
+      <DependentUpon>MyData.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\StudentModel.cs" />
+    <Compile Include="Models\TeacherModel.cs" />
+    <Compile Include="Models\TimeBookingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +167,24 @@
     <Content Include="Content\image\faces%401x.png" />
     <Content Include="Content\image\tempsnip.png" />
     <Content Include="Content\LoaderStyle.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\Style.css" />
+    <Content Include="Content\Image\avatar\1a04987c504068f1b36d0eff04a5db09.jpg" />
+    <Content Include="Content\Image\avatar\6245ac3575e3ac879dd0b3cdf1727600.jpg" />
+    <Content Include="Content\Image\avatar\avatar-anime-12.jpg" />
+    <Content Include="Content\Image\avatar\avatar-anime-đeo-kính.jpg" />
+    <Content Include="Content\Image\avatar\duc.jpg" />
+    <Content Include="Content\Image\avatar\images.jpg" />
+    <Content Include="Content\Image\avatar\PhamMinhSang.png" />
+    <Content Include="Content\Image\avatar\sang.jpg" />
+    <Content Include="Content\Image\avatar\top-100-buc-anh-anime-lam-avatar-chat-nhat-qua-dat.jpg" />
+    <Content Include="Content\Image\background.jpg" />
+    <Content Include="Content\Image\Facebook-200x200.jpg" />
+    <Content Include="Content\Image\hinh-anh-background-o-mat-cao.jpg" />
+    <Content Include="Content\Image\icon-home.png" />
+    <Content Include="Content\Image\Twitter-1.jpg" />
+    <Content Include="Content\Image\twitter.png" />
+    <Content Include="Content\Image\zalo_sharelogo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -167,13 +192,13 @@
     <Content Include="Content\image\x.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\TutorFinding.dbml">
+    <Content Include="Models\MyData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>TutorFinding.designer.cs</LastGenOutput>
+      <LastGenOutput>MyData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\TutorFinding.dbml.layout">
-      <DependentUpon>TutorFinding.dbml</DependentUpon>
+    <None Include="Models\MyData.dbml.layout">
+      <DependentUpon>MyData.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -204,6 +229,16 @@
     <Content Include="Views\Home\Message.cshtml" />
     <Content Include="Views\Shared\ChatContent.cshtml" />
     <Content Include="Views\Home\FindTutor.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Tutor\Profile.cshtml" />
+    <Content Include="Views\Tutor\EditProfile.cshtml" />
+    <Content Include="Views\Tutor\EditPassword.cshtml" />
+    <Content Include="Views\Tutor\TutorManagement.cshtml" />
+    <Content Include="Views\Tutor\Login.cshtml" />
+    <Content Include="Views\Tutor\Register.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

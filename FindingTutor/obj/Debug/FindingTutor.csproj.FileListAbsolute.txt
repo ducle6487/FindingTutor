@@ -1,3 +1,4 @@
+
 C:\Users\AnhDuc\source\repos\FindingTutor\FindingTutor\bin\FindingTutor.dll.config
 C:\Users\AnhDuc\source\repos\FindingTutor\FindingTutor\bin\FindingTutor.dll
 C:\Users\AnhDuc\source\repos\FindingTutor\FindingTutor\bin\FindingTutor.pdb
@@ -156,3 +157,4 @@ C:\Users\Binh\Desktop\FindingTutor\FindingTutor\obj\Debug\FindingTutor.csproj.Co
 C:\Users\Binh\Desktop\FindingTutor\FindingTutor\obj\Debug\FindingTutor.csproj.CopyComplete
 C:\Users\Binh\Desktop\FindingTutor\FindingTutor\obj\Debug\FindingTutor.dll
 C:\Users\Binh\Desktop\FindingTutor\FindingTutor\obj\Debug\FindingTutor.pdb
+
