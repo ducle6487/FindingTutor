@@ -14,7 +14,7 @@ namespace FindingTutor.Controllers
             Session["Student"] = null;
             Session["Admin"] = null;
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("MainPage", "Home");
         }
 
         public ActionResult UserLogin()
@@ -26,7 +26,7 @@ namespace FindingTutor.Controllers
 
             if (Session["Student"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("MainPage", "Home");
             }
 
             if (Session["Admin"] != null)
@@ -99,7 +99,7 @@ namespace FindingTutor.Controllers
             else
             {
                 Session["Student"] = accUtils.checkStudentLogin(email, password);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("MainPage", "Home");
             }
 
             return View("UserLogin");

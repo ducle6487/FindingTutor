@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
@@ -25,6 +26,36 @@ namespace FindingTutor.Models
                 byte[] hashBytes = sha1Hash.ComputeHash(sourceBytes);
                 return BitConverter.ToString(hashBytes).Replace("-", String.Empty);
             }
+        }
+
+        public List<TeacherModel> getAllTeacher()
+        {
+            string sql = "select * from Teacher";
+
+            SqlConnection con = db.GetConnection();
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            cmd.Fill(dt);
+            cmd.Dispose();
+            con.Close();
+            List<TeacherModel> list = new List<TeacherModel>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                TeacherModel t = new TeacherModel();
+                t.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());
+                t.Email = dt.Rows[i]["Email"].ToString();
+                t.Password = dt.Rows[i]["Password"].ToString();
+                t.Name = dt.Rows[i]["Name"].ToString();
+                t.Phone = dt.Rows[i]["Phone"].ToString();
+                t.Price = Convert.ToDouble(dt.Rows[i]["Price"].ToString());
+                t.Avatar = dt.Rows[i]["Avatar"].ToString();
+                t.Bio = dt.Rows[i]["Bio"].ToString();
+                list.Add(t);
+            }
+
+            return list;
         }
 
         //kiem tra dang nhap
@@ -205,6 +236,68 @@ namespace FindingTutor.Models
             }
 
             return s;
+        }
+
+        public StudentModel getStudentById(string id)
+        {
+            string sql = "select * from Student where IdStudent = " + id;
+
+            SqlConnection con = db.GetConnection();
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            cmd.Fill(dt);
+            cmd.Dispose();
+            con.Close();
+
+            StudentModel s = null;
+
+            if (dt.Rows.Count > 0)
+            {
+                s = new StudentModel();
+                s.IdStudent = Convert.ToInt32(dt.Rows[0]["IdStudent"].ToString());
+                s.Email = dt.Rows[0]["Email"].ToString();
+                s.Password = dt.Rows[0]["Password"].ToString();
+                s.Name = dt.Rows[0]["Name"].ToString();
+                s.Phone = dt.Rows[0]["Phone"].ToString();
+                s.Avatar = dt.Rows[0]["Avatar"].ToString();
+            }
+
+            return s;
+        }
+
+        public bool updateProfile(StudentModel tutor)
+        {
+            string sql = "Update Student set Name = N'" + tutor.Name + "',Phone = '" + tutor.Phone +
+                         "' , Avatar = '" + tutor.Avatar + "' where IdStudent = " + tutor.IdStudent;
+            SqlConnection con = db.GetConnection();
+            SqlCommand cmd = new SqlCommand(sql, con);
+
+            con.Open();
+            var result = cmd.ExecuteNonQuery();
+
+            cmd.Dispose();
+            con.Close();
+
+            return result > 0;
+        }
+
+        public bool updatePassword(string email, string pass)
+        {
+            string hash = hashPassword(pass);
+            string sql = "update Student set Password = '" + hash + "' where Email = '" + email + "'";
+
+            TeacherModel s = null;
+            SqlConnection con = db.GetConnection();
+            SqlCommand cmd = new SqlCommand(sql, con);
+
+            con.Open();
+            int r = cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+
+            return r > 0;
         }
     }
 }

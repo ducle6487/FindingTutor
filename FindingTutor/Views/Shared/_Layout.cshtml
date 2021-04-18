@@ -23,7 +23,7 @@
                 }
                 else
                 {
-                    <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/Content/Image/icon.png" width="90px" /></a>
+                    <a class="navbar-brand" href="@Url.Action("MainPage", "Home")"><img src="~/Content/Image/icon.png" width="90px" /></a>
                 }
             }
 
@@ -46,7 +46,7 @@
                             }
                             else
                             {
-                                <a class="nav-link" href="@Url.Action("Index", "Home")">Trang chủ <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="@Url.Action("MainPage", "Home")">Trang chủ <span class="sr-only">(current)</span></a>
                             }
                         }
                     </li>
@@ -111,7 +111,7 @@
                     <p><a href="#">Ruby</a></p>
                     <p><a href="#">Javascript</a></p>
                     <p><a href="#">Html/Css</a></p>
-                    <h4 class="footer-tittle-col"><strong>Bắt đầu...</strong></h4>
+                    <h4 class="footer-tittle-col"><strong>Bắt đầu</strong></h4>
                     <p><a href="@Url.Action("UserLogin","Authenticate", new{URL = Request.Url.ToString()})">Đăng ký</a></p>
                     <p><a href="@Url.Action("UserLogin","Authenticate", new{URL = Request.Url.ToString()})">Đăng nhập</a></p>
                 </div>

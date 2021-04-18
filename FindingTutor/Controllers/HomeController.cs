@@ -75,8 +75,8 @@ namespace FindingTutor.Controllers
                     bool r = bku.AddBookingRequest(bookingModel, btList);
 
                     Session["Student"] = s;
-                    ViewBag.message = "Yêu cầu của bạn đã được gửi đi";
-                    return RedirectToAction("Index", "Home");
+                    Session["message"] = "Yêu cầu của bạn đã được gửi đi";
+                    return RedirectToAction("MainPage", "Home");
                 }
                 else
                 {
@@ -154,8 +154,8 @@ namespace FindingTutor.Controllers
                             bool r = bku.AddBookingRequest(bookingModel, btList);
 
                             Session["Student"] = s;
-                            ViewBag.message = "Yêu cầu của bạn đã được gửi đi";
-                            return RedirectToAction("Index", "Home");
+                            Session["message"] = "Yêu cầu của bạn đã được gửi đi";
+                            return RedirectToAction("MainPage", "Home");
                         }
                         else
                         {
@@ -228,9 +228,9 @@ namespace FindingTutor.Controllers
                     bookingModel.DateStart = ViewBag.datestart;
                     bookingModel.IdCourse = Convert.ToInt32(ViewBag.khoahoc);
                     bool r = bku.AddBookingRequest(bookingModel, btList);
-                    ViewBag.message = "Yêu cầu của bạn đã được gửi đi";
+                    Session["message"] = "Yêu cầu của bạn đã được gửi đi";
                     Session["Student"] = s;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("MainPage", "Home");
                 }
                 else
                 {
@@ -318,7 +318,7 @@ namespace FindingTutor.Controllers
             return View();
         }
 
-        public ActionResult Index()
+        public ActionResult MainPage()
         {
             return View();
         }

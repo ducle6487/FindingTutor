@@ -31,6 +31,39 @@ namespace FindingTutor.Models
             db = new DBConnection();
         }
 
+        public List<BookingModel> getAllBooking()
+        {
+            string sql = "select * from Booking";
+            SqlConnection con = db.GetConnection();
+            SqlDataAdapter cmd = new SqlDataAdapter(sql, con);
+            DataTable dt = new DataTable();
+
+            con.Open();
+            cmd.Fill(dt);
+            cmd.Dispose();
+            con.Close();
+
+            List<BookingModel> list = new List<BookingModel>();
+
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    BookingModel p = new BookingModel();
+                    p.Id = Convert.ToInt32(dt.Rows[i]["Id"].ToString());
+                    p.IdStudent = Convert.ToInt32(dt.Rows[i]["IdStudent"].ToString());
+                    p.IdTeacher = Convert.ToInt32(dt.Rows[i]["IdTeacher"].ToString());
+                    DateTime d = Convert.ToDateTime(dt.Rows[i]["DateStart"].ToString());
+                    p.DateStart = d.ToString("dd/MM/yyyy");
+                    p.Status = Convert.ToInt32(dt.Rows[i]["Status"].ToString());
+                    p.IdCourse = Convert.ToInt32(dt.Rows[i]["IdCourse"].ToString());
+                    list.Add(p);
+                }
+            }
+
+            return list;
+        }
+
         public bool AddBookingRequest(BookingModel a, List<BookingTimeModel> b)
         {
             string sql = "insert into Booking(IdStudent,IdTeacher,DateStart,Status,IdCourse) output inserted.Id values (" + a.IdStudent +

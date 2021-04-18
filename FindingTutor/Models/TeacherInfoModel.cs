@@ -19,7 +19,7 @@ namespace FindingTutor.Models
 
         public List<TeacherInfoModel> getAllTeacherInfo()
         {
-            TeacherUtils teacherUtils = new TeacherUtils();
+            AccountUtils teacherUtils = new AccountUtils();
             List<TeacherModel> listTeacher = teacherUtils.getAllTeacher();
 
             List<TeacherInfoModel> list = new List<TeacherInfoModel>();
@@ -39,7 +39,7 @@ namespace FindingTutor.Models
 
         public List<TeacherInfoModel> getTeacherInfoFor(int IdCourse)
         {
-            TeacherUtils teacherUtils = new TeacherUtils();
+            AccountUtils teacherUtils = new AccountUtils();
             List<TeacherModel> listTeacher = teacherUtils.getAllTeacher();
 
             List<TeacherInfoModel> list = new List<TeacherInfoModel>();

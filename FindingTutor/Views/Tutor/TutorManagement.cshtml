@@ -98,14 +98,14 @@
                                             if (listFT.SingleOrDefault(n => n.Index == index) != null)
                                             {
                                                 <td class="border-tick-time">
-                                                    <input class="checkbox" type="checkbox" name="@index" checked />
+                                                    <input style="width: 20px; height: 20px" type="checkbox" name="@index" checked />
                                                     @{ index++;}
                                                 </td>
                                             }
                                             else
                                             {
                                                 <td class="border-tick-time">
-                                                    <input class="checkbox" type="checkbox" name="@index" />
+                                                    <input style="width: 20px; height: 20px" type="checkbox" name="@index" />
                                                     @{ index++;}
                                                 </td>
 
@@ -148,11 +148,11 @@
                             <td>@course.NameGrade</td>
                             @if (listProf.SingleOrDefault(n => n.IdCourse == course.IdCourse) != null)
                             {
-                                <td><input type="checkbox" name="@course.IdCourse" checked></td>
+                                <td><input style="width: 20px; height: 20px" type="checkbox" name="@course.IdCourse" checked></td>
                             }
                             else
                             {
-                                <td><input type="checkbox" name="@course.IdCourse"></td>
+                                <td><input style="width: 20px; height: 20px" type="checkbox" name="@course.IdCourse"></td>
                             }
                         </tr>
                     }

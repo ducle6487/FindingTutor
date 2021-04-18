@@ -127,7 +127,7 @@
                 <br />
                 <br />
                 <div style="display: flex">
-                    <div class="input-group mb-3" style="width: 30%">
+                    <div class="input-group mb-3" style="width: 30%" >
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">Khóa học</label>
                         </div>
@@ -165,7 +165,7 @@
             @foreach (TeacherInfoModel teacherInfo in ViewBag.ListInfo)
             {
                 <div class="card-container">
-                    <img class="round" src="~/Content/Image/@teacherInfo.teacherModel.Avatar" style="width:50%" alt="user" />
+                    <img class="round" id="hinh" src="~/Content/Image/@teacherInfo.teacherModel.Avatar" style="width: 50%; aspect-ratio: 1" alt="user" />
                     <h3>@teacherInfo.teacherModel.Name</h3>
                     <h6>@teacherInfo.teacherModel.Email</h6>
                     <p>0@(teacherInfo.teacherModel.Phone)<br />@(teacherInfo.teacherModel.Price)đ/giờ </p>

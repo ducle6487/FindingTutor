@@ -1,7 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@if (Session["message"] != null)
+{
+    <script>
+        window.alert("@Session["message"]");
+    </script>
+    Session["message"] = null;
+}
 <div class="background-body">
     <div class="box-200h"></div>
     <div class="container justify-content-center">
@@ -16,7 +22,7 @@
         <div class="row justify-content-center">
             <h2 class="Maxim shadow-lg"><strong>Tri thức là sức mạnh</strong></h2>
         </div>
-        
+
         <div class="row home-intro-2">
             <div class="col-6">
                 <video width="445px" height="250px" src="https://www.youtube.com/watch?v=gVlYxmdbYqM&list=PL87xs3-aQEEPfX5y4xvTQFsGHDbDe1tUH&index=29" controls></video>
@@ -26,8 +32,10 @@
                     Keep your family’s
                     <span>tuition on track</span> with Tutorful
                 </h4>
-                <p>Learning online means there’s no need to travel to your sessions and you have access 
-                to the best tutors from all around the country from the comfort of your home.</p>
+                <p>
+                    Learning online means there’s no need to travel to your sessions and you have access
+                    to the best tutors from all around the country from the comfort of your home.
+                </p>
             </div>
         </div>
 
@@ -75,11 +83,8 @@
                         <h6><span>Mark Zuckerburg</span></h6>
                         <h6> - Phụ huynh</h6>
                     </a>
-
                 </div>
             </div>
-            
         </div>
     </div>
-    
 </div>

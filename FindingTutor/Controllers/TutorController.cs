@@ -109,7 +109,7 @@ namespace FindingTutor.Controllers
             TeacherModel tutor = dbC.GetListTutor().SingleOrDefault(n => n.IdTeacher.ToString() == id);
             if (tutor == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("MainPage", "Home");
             }
 
             ViewBag.idteacher = tutor.IdTeacher;
@@ -146,9 +146,11 @@ namespace FindingTutor.Controllers
 
             if (dbC.EditProfile(tutor))
             {
+                Session["Teacher"] = dbC.GetTutorById(tutor.IdTeacher);
+                Session["message"] = "Cập nhật thành công";
                 return RedirectToAction("TutorManagement");
             }
-            ViewBag.Mess = "Sửa không thành công!";
+            ViewBag.Mess = "Cập nhật không thành công!";
             return View();
         }
 
@@ -188,6 +190,7 @@ namespace FindingTutor.Controllers
                 if (s != null)
                 {
                     Session["Teacher"] = s;
+                    Session["message"] = "Cập nhật thành công";
                     return RedirectToAction("TutorManagement", "Tutor");
                 }
             }
