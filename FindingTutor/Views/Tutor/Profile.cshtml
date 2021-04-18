@@ -125,14 +125,14 @@
                                                 if (listFT.SingleOrDefault(n => n.Index == index) != null)
                                                 {
                                                     <td class="border-tick-time">
-                                                        <input class="checkbox" type="checkbox" name="@index" checked disabled />
+                                                        <input class="checkbox" type="checkbox" name="@index" checked disabled style="width:20px; height:20px" />
                                                         @{ index++;}
                                                     </td>
                                                 }
                                                 else
                                                 {
                                                     <td class="border-tick-time">
-                                                        <input class="checkbox" type="checkbox" name="@index" disabled />
+                                                        <input class="checkbox" type="checkbox" name="@index" disabled style="width:20px; height:20px" />
                                                         @{ index++;}
                                                     </td>
 

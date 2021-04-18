@@ -8,21 +8,30 @@ namespace FindingTutor.Controllers
     {
         private AccountUtils accUtils = new AccountUtils();
 
+        public ActionResult Logout()
+        {
+            Session["Teacher"] = null;
+            Session["Student"] = null;
+            Session["Admin"] = null;
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult UserLogin()
         {
             if (Session["Teacher"] != null)
             {
-                return RedirectToAction("TutorManagement","Tutor");
+                return RedirectToAction("TutorManagement", "Tutor");
             }
 
             if (Session["Student"] != null)
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
 
             if (Session["Admin"] != null)
             {
-                return RedirectToAction("Index","Admin");
+                return RedirectToAction("Index", "Admin");
             }
 
             return View();

@@ -1,0 +1,145 @@
+﻿@using FindingTutor.Models
+
+<style>
+    nav {
+        background: #343a40;
+    }
+
+        nav ul {
+            font-size: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+            nav ul li {
+                display: inline-block;
+                position: relative;
+            }
+
+                nav ul li a {
+                    color: #fff;
+                    display: block;
+                    font-size: 14px;
+                    padding: 15px 14px;
+                    transition: 0.3s linear;
+                }
+
+                    nav ul li a:hover {
+                        color: #dddada;
+                        text-decoration: none;
+                    }
+
+                    nav ul li:hover {
+                        background: #424a51;
+                        
+                    }
+
+                nav ul li ul {
+                    border-bottom: 5px solid #4cff00;
+                    display: none;
+                    position: absolute;
+                    width: 250px;
+                }
+
+                    nav ul li ul li {
+                        border-top: 1px solid #4cff00;
+                        display: block;
+                    }
+
+                        nav ul li ul li:first-child {
+                            border-top: none;
+                        }
+
+                        nav ul li ul li a {
+                            background: #343a40;
+                            display: block;
+                            padding: 10px 14px;
+                        }
+
+                            nav ul li ul li a:hover {
+                                color: #eeecec;
+                                background: #4d565f;
+                                text-decoration: none;
+                            }
+</style>
+
+@if (Session["Teacher"] != null)
+        {
+            TeacherModel t = (TeacherModel) Session["Teacher"];
+    //hien thi ten gv
+    <nav>
+        <div class="container">
+            <ul>
+                <li>
+                    <a href="#"><img src="~/Content/Image/@t.Avatar" width="55px" style="border-radius:27.5px" />&nbsp;@t.Name </a>
+                    <ul>
+                        <li><a href="#">Lịch sử </a></li>
+                        <li><a href="@Url.Action("EditProfile", "Tutor")">Cập nhật thông tin</a></li>
+                        <li><a href="@Url.Action("EditPassword", "Tutor")">Đổi mật khẩu</a></li>
+                        <li><a href="@Url.Action("Logout","Authenticate")">Đăng xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+        }
+        else if (Session["Student"] != null)
+        {
+            //hien thi thong tin sv
+            StudentModel s = (StudentModel) Session["Student"];
+<nav>
+    <div class="container">
+        <ul>
+            <li>
+                <a href="#"><img src="~/Content/Image/@s.Avatar" width="55px" style="border-radius:27.5px" />&nbsp;@s.Name </a>
+                <ul>
+                    <li><a href="#">Lịch sử </a></li>
+                    <li><a href="#">Cập nhật thông tin</a></li>
+                    <li><a href="#">Đổi mật khẩu</a></li>
+                    <li><a href="@Url.Action("Logout","Authenticate")">Đăng xuất</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+}
+else if (Session["Admin"] != null)
+{
+    //hien thi thong tin admin
+<nav>
+    <div class="container">
+        <ul>
+            <li>
+                <a href="#"><img src="~/Content/Image/Avatar.png" width="55px" style="border-radius:27.5px" />&nbsp;Quản trị viên </a>
+                <ul>
+                    <li><a href="@Url.Action("Logout","Authenticate")">Đăng xuất</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+}
+else
+{
+    <nav>
+        <div class="container">
+            <ul>
+                <li>
+                    
+                    <a href="@Url.Action("UserLogin","Authenticate")"><img src="~/Content/Image/user.png" width="55px" />&nbsp;Đăng nhập </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+}
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+    $('nav li').hover(
+        function () {
+            $('ul', this).stop().slideDown(200);
+        },
+        function () {
+            $('ul', this).stop().slideUp(200);
+        }
+    );
+</script>

@@ -19,10 +19,11 @@
             <p>0@(Model.Phone)</p>
             <p class="float-left pm-price">Giá: @(Model.Price)đ/giờ</p>
             <!--  -->
-            <nav class="navbar navbar-expand-lg navbar-light float-right">
-
-                <a class="navbar-brand" href="@Url.Action("EditProfile", "Tutor")">Cập nhật thông tin </a>
-                <a class="navbar-brand" href="@Url.Action("EditPassword", "Tutor")">Đổi mật khẩu</a>
+            <nav class="navbar navbar-expand-lg navbar-light float-right" style="background:none">
+                <div>
+                    <a class="navbar-brand" href="@Url.Action("EditProfile", "Tutor")">Cập nhật thông tin </a>
+                    <a class="navbar-brand" href="@Url.Action("EditPassword", "Tutor")">Đổi mật khẩu</a>
+                </div>
             </nav>
             <!--  -->
         </div>
@@ -129,7 +130,7 @@
         @using (@Html.BeginForm("SubjectManage", "Tutor", FormMethod.Post))
         {
             <div>
-                <h2 class="text-center">Quản lý cấp chương trình dạy</h2>
+                <h2 class="text-center">Quản lý chương trình dạy</h2>
             </div>
             <table class="table table-request-management">
                 <thread>
